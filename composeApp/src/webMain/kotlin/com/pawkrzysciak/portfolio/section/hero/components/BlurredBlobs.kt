@@ -21,53 +21,45 @@ fun BlurredBlobs(height: Dp, max: Dp) {
     val blobs = remember(height, max) {
         listOf(
             Blob(
-                size = max,
-                offsetX = -max / 2,
-                offsetY = (height / 2) - max / 2,
+                size = max + max,
+                offsetX = -max,
+                offsetY = (height / 2) - (max + max)/2,
                 color = Color.White,
-                alpha = 0.7f,
+                alpha = 0.9f,
                 blur = 100.dp
             ),
-            Blob(
-                size = max,
-                offsetX = 0.dp,
-                offsetY = (height / 2) - max / 2,
-                color = Color.White,
-                alpha = 0.7f,
-                blur = 100.dp
-            ),
-            Blob(
-                size = 500.dp,
-                offsetX = (-90).dp,
-                offsetY = (height / 2) - 250.dp,
-                color = Color.White,
-                alpha = 0.6f,
-                blur = 120.dp
-            ),
+//            Blob(
+//                size = max,
+//                offsetX = -max / 2,
+//                offsetY = (height / 2) - max / 2,
+//                color = Color.White,
+//                alpha = 0.9f,
+//                blur = 100.dp
+//            ),
+//            Blob(
+//                size = max,
+//                offsetX = 0.dp,
+//                offsetY = (height / 2) - max / 2,
+//                color = Color.White,
+//                alpha = 0.9f,
+//                blur = 100.dp
+//            ),
 //            Blob(
 //                size = 500.dp,
 //                offsetX = (-90).dp,
 //                offsetY = (height / 2) - 250.dp,
-//                color = Color.Green,
-//                alpha = 0.2f,
+//                color = Color.White,
+//                alpha = 0.8f,
 //                blur = 120.dp
 //            ),
-            Blob(
-                size = 360.dp,
-                offsetX = 250.dp,
-                offsetY = (height / 2) - 180.dp,
-                color = Color.White,
-                alpha = 0.6f,
-                blur = 140.dp
-            ),
 //            Blob(
 //                size = 360.dp,
 //                offsetX = 250.dp,
 //                offsetY = (height / 2) - 180.dp,
-//                color = Color.Green,
-//                alpha = 0.1f,
+//                color = Color.White,
+//                alpha = 0.8f,
 //                blur = 140.dp
-//            )
+//            ),
         )
     }
 
