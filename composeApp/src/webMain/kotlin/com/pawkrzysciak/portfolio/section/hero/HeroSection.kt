@@ -4,18 +4,16 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,47 +26,28 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pawkrzysciak.portfolio.common.rememberWindowSize
 import com.pawkrzysciak.portfolio.section.hero.components.BackgroundGrid
 import com.pawkrzysciak.portfolio.section.hero.components.FloatingTechWordsTypewriter
-import org.jetbrains.compose.resources.painterResource
-import portfolio.composeapp.generated.resources.Res
-import portfolio.composeapp.generated.resources.draw
+import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
 
 @Composable
-fun HeroSection() {
-    val windowInfo = LocalWindowInfo.current
-    val viewportHeight = windowInfo.containerSize.height.dp
-    val viewportWidth = windowInfo.containerSize.width.dp
-    Box(
-        modifier = Modifier
-            .height(viewportHeight)
-            .background(Color.White)
+fun HeroSection(
+    modifier: Modifier,
+) {
+    val windowSize = rememberWindowSize()
+
+    BoxWithConstraints(
+        modifier = modifier
+            .defaultMinSize(minHeight = windowSize.height)
+            .background(Color.White),
     ) {
-        BackgroundGrid(height = viewportHeight)
-        FloatingTechWordsTypewriter(viewportHeight = viewportHeight, viewportWidth = viewportWidth)
+        BackgroundGrid(windowSize = windowSize)
+        FloatingTechWordsTypewriter(windowSize = windowSize)
         HeroMainSection()
-    }
-}
-
-@Composable
-private fun AndroidDraw() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(40.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.End,
-    ) {
-        Image(
-            painter = painterResource(Res.drawable.draw),
-            contentDescription = null,
-            modifier = Modifier.size(500.dp)
-        )
     }
 }
 
@@ -82,7 +61,7 @@ private fun BoxScope.HeroMainSection() {
         modifier = Modifier
             .background(color = Color.White)
             .fillMaxWidth()
-            .padding(horizontal = 80.dp, vertical = 120.dp)
+            .padding(horizontal = GetLayoutPadding(), vertical = 120.dp)
             .align(Alignment.CenterStart),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start
@@ -101,7 +80,6 @@ private fun BoxScope.HeroMainSection() {
                     fontWeight = FontWeight.Bold,
                     lineHeight = 52.sp,
                 ),
-                modifier = Modifier.pointerInput(Unit) {}
             )
         }
 

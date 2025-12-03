@@ -7,12 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun BackgroundGrid(height: Dp) {
-    Canvas(modifier = Modifier.fillMaxWidth().height(height)) {
+fun BackgroundGrid(windowSize: DpSize) {
+    Canvas(modifier = Modifier.fillMaxWidth().height(windowSize.height)) {
         val step = 32.dp.toPx()
         val color = Color.LightGray.copy(alpha = 0.8f)
         var x = 0f

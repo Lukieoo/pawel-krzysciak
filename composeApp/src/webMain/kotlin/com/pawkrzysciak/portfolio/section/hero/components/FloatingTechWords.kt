@@ -1,8 +1,8 @@
 package com.pawkrzysciak.portfolio.section.hero.components
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.toFontFamily
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.Font
@@ -40,11 +41,11 @@ fun generateTechWords(
         val xBase = 0.1f + (index % 6) * 0.15f
         val yBase = 0.05f + (index / 6) * 0.15f
 
-        val xChaos = xBase + (random.nextFloat() - 0.5f) * 0.2f // ±0.1
-        val yChaos = yBase + (random.nextFloat() - 0.5f) * 0.2f // ±0.1
+        val xChaos = xBase + (random.nextFloat() - 0.5f) * 0.2f
+        val yChaos = yBase + (random.nextFloat() - 0.5f) * 0.2f
 
-        val scale = 0.8f + random.nextFloat() * 1.2f          // 0.8 → 2.0
-        val rotation = random.nextInt(-20, 21).toFloat()      // -20° → 20° dla większego chaosu
+        val scale = 0.8f + random.nextFloat() * 1.2f
+        val rotation = random.nextInt(-20, 21).toFloat()
 
         TechWord(
             text = text,
@@ -62,20 +63,17 @@ fun HandwritingFont() = Font(Res.font.reenie_beanie_regular).toFontFamily()
 
 @Composable
 fun FloatingTechWordsTypewriter(
-    modifier: Modifier = Modifier,
-    viewportHeight: Dp,
-    viewportWidth: Dp,
+    windowSize: DpSize,
 ) {
-    val words = remember(viewportHeight, viewportWidth) {
+    val words = remember(windowSize) {
         generateTechWords(
-            viewportHeight = viewportHeight,
-            viewportWidth = viewportWidth
+            viewportHeight = windowSize.height,
+            viewportWidth = windowSize.width
         )
     }
-
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(modifier = Modifier.size(windowSize)) {
         words.forEach { word ->
-            if (word.y > viewportHeight) return@forEach
+            if (word.y > windowSize.height) return@forEach
 
             var visibleChars by remember { mutableStateOf(0) }
 

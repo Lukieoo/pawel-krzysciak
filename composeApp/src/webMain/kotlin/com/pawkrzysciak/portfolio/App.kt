@@ -8,8 +8,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.pawkrzysciak.portfolio.extensions.parallaxLayoutModifier
 import com.pawkrzysciak.portfolio.section.aboutme.AboutMeSection
 import com.pawkrzysciak.portfolio.section.hero.HeroSection
+import com.pawkrzysciak.portfolio.section.timeline.TimelineSection
 
 @Composable
 fun App() {
@@ -28,10 +30,13 @@ fun PortfolioPage() {
             .background(MaterialTheme.colorScheme.background)
             .verticalScroll(scrollState)
     ) {
-        HeroSection()
+        HeroSection(modifier = Modifier.parallaxLayoutModifier(scrollState, 2))
         AboutMeSection()
+        TimelineSection()
     }
 }
+
+
 //
 //@Composable
 //fun TechnologiesSection() {
