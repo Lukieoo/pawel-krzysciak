@@ -49,7 +49,6 @@ fun AboutMeSection() {
         targetValue = if (animationPlayed.value) experienceYears else 0,
         animationSpec = tween(durationMillis = 1600, easing = FastOutSlowInEasing)
     )
-    val uriHandler = LocalUriHandler.current
     LaunchedEffect(Unit) { animationPlayed.value = true }
 
     var visible by remember { mutableStateOf(false) }
@@ -79,7 +78,6 @@ fun AboutMeSection() {
             ) {
                 AboutMeTextColumn(
                     modifier = Modifier.weight(1f),
-                    uriHandler = uriHandler
                 )
             }
 
@@ -92,7 +90,7 @@ fun AboutMeSection() {
 }
 
 @Composable
-fun AboutMeTextColumn(modifier: Modifier, uriHandler: UriHandler) {
+fun AboutMeTextColumn(modifier: Modifier) {
     Column(modifier = modifier.widthIn(max = 900.dp)) {
         Text(
             text = "O mnie",
@@ -102,8 +100,8 @@ fun AboutMeTextColumn(modifier: Modifier, uriHandler: UriHandler) {
         Spacer(Modifier.height(16.dp))
 
         Text(
-            text = "Jestem inżynierem informatyki oraz programistą Androida z ponad 6 letnim doświadczeniem w tworzeniu nowoczesnych aplikacji mobilnych. Pracowałem nad projektami dla różnych branż od systemów POS i aplikacji społecznościowych dla sprzedawców, po sektor ochrony zdrowia i e-commerce z których część była używana przez ponad milion użytkowników.\n\n" +
-                    "Swoje aplikacje głównie tworzę w Kotlinie dbając o dobre praktyki. Łączę podejście business-first z dbałością o jakość kodu, czytelność i skalowalność projektu. Na co dzień pracuję w metodykach Agile.\n\n" +
+            text = "Jestem inżynierem informatyki oraz programistą Androida z ponad 6 letnim doświadczeniem w tworzeniu nowoczesnych aplikacji mobilnych. Współpracowałem nad projektami dla różnych branż od systemów POS i aplikacji społecznościowych dla sprzedawców, po sektor ochrony zdrowia i e-commerce z których część była używana przez ponad milion użytkowników.\n\n" +
+                    "Swoje aplikacje głównie tworzę i rozwijam w Kotlinie dbając o dobre praktyki. Łączę podejście business-first z dbałością o jakość kodu, czytelność i skalowalność projektu. Na co dzień pracuję w metodykach Agile.\n\n" +
                     "Po godzinach rozwijam własne aplikacje, tworzę UI/UX i eksperymentuję z grafiką. Dodatkowo piszę gry w silniku Godot, co pozwala mi rozwijać kreatywność i umiejętności projektowe.",
             style = MaterialTheme.typography.bodyLarge.copy(
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.85f)
@@ -119,19 +117,21 @@ fun AboutMeTextColumn(modifier: Modifier, uriHandler: UriHandler) {
 
         Spacer(Modifier.height(16.dp))
 
-        SocialButtonsRow(uriHandler)
+        SocialButtonsRow()
     }
 }
 
 @Composable
-fun SocialButtonsRow(uriHandler: UriHandler) {
-    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+fun SocialButtonsRow() {
+    val uriHandler = LocalUriHandler.current
+    FlowRow (horizontalArrangement = Arrangement.spacedBy(16.dp)) {
         SocialButton("GitHub", "https://github.com/Lukieoo", uriHandler)
         SocialButton(
             "LinkedIn",
             "https://www.linkedin.com/in/paweł-krzyściak-2691a8186",
             uriHandler
         )
+        SocialButton("Itch.io", "https://lukieoo.itch.io/", uriHandler)
     }
 }
 

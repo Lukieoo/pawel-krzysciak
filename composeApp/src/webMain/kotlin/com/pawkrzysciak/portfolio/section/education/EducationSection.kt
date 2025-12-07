@@ -18,21 +18,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.pawkrzysciak.portfolio.fakes.educationList
 
 @Composable
 fun EducationSection(modifier: Modifier) {
-    val educationList = listOf(
-        EducationData(
-            school = "Politechnika Krakowska",
-            degree = "Inżynier informatyki",
-            period = "2020 — 2024"
-        ),
-        EducationData(
-            school = "ZST-Tarnów",
-            degree = "Technik informatyk",
-            period = "2015 — 2019"
-        )
-    )
+
 
     Column(
         modifier = modifier

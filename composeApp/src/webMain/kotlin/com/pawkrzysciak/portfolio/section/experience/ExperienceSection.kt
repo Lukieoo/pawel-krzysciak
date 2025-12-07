@@ -19,34 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.pawkrzysciak.portfolio.fakes.experiences
 
 
 @Composable
 fun ExperienceSection(modifier: Modifier) {
-    val experiences = listOf(
-        ExperienceData(
-            company = "Silky Coders",
-            role = "Android Developer",
-            period = "Maj 2022 — obecnie",
-            location = "Gdańsk, Polska",
-            description = "Tworzenie nowoczesnych rozwiązań e-commerce"
-        ),
-        ExperienceData(
-            company = "POSbistro",
-            role = "Android Developer",
-            period = "Gru 2021 — Kwi 2022\nJunior Android Developer: Lut 2021 — Gru 2021",
-            location = "Polska",
-            description = "Tworzenie oprogramowania dla branży gastronomicznej.\nUtrzymanie i rozwój systemu POS."
-        ),
-        ExperienceData(
-            company = "Lasoft",
-            role = "Android Developer",
-            period = "Lis 2019 — Sty 2021",
-            location = "Kraków, Polska",
-            description = "Tworzenie oprogramowania na platformę Android.\nUtrzymanie istniejących projektów i tworzenie nowych aplikacji w Kotlin/Java."
-        )
-    )
-
     Column(
         modifier = modifier.defaultMinSize(minWidth = 600.dp),
     ) {

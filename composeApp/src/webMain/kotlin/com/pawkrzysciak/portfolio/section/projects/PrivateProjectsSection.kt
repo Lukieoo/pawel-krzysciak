@@ -3,6 +3,7 @@ package com.pawkrzysciak.portfolio.section.projects
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -32,11 +33,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.carousel.HorizontalUncontainedCarousel
-import androidx.compose.material3.carousel.rememberCarouselState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -54,115 +52,18 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
 import com.pawkrzysciak.portfolio.common.rememberWindowSize
+import com.pawkrzysciak.portfolio.fakes.sampleProjects
 import com.pawkrzysciak.portfolio.section.hero.components.BackgroundGrid
-import com.pawkrzysciak.portfolio.section.hero.components.HandwritingFont
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
-import com.pawkrzysciak.portfolio.theme.isMobile
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.painterResource
 
-val sampleProjects = listOf(
-    ProjectItem(
-        id = "1",
-        title = "TaskFlow",
-        description = "Aplikacja do zarządzania zadaniami stworzona w Kotlin Multiplatform. Synchronizacja w czasie rzeczywistym, ciemny motyw, i zaawansowane statystyki.",
-        previewImagesUrls = listOf(
-            "https://picsum.photos/600/900?random=1",
-            "https://picsum.photos/600/900?random=2",
-            "https://picsum.photos/600/900?random=3",
-            "https://picsum.photos/600/900?random=4",
-        ), // pionowa
-        iconUrl = "https://picsum.photos/200?random=11",
-        githubUrl = "https://github.com/example/taskflow",
-        playStoreUrl = "https://play.google.com/store/apps/details?id=example.taskflow",
-        isArchived = false
-    ),
-
-    ProjectItem(
-        id = "2",
-        title = "FitTracker",
-        description = "Aplikacja fitness do śledzenia aktywności, kroków i kalorii. Wspiera WearOS oraz synchronizację z chmurą.",
-        previewImagesUrls = listOf("https://picsum.photos/600/900?random=2"),
-        iconUrl = "https://picsum.photos/200?random=12",
-        githubUrl = "https://github.com/example/fittracker",
-        externalUrl = "https://fittracker.example.com",
-        isArchived = false
-    ),
-
-    ProjectItem(
-        id = "3",
-        title = "NoteSwift",
-        description = "Lekki notatnik z obsługą Markdown, offline-first i synchronizacją między urządzeniami.",
-        previewImagesUrls = listOf("https://picsum.photos/600/900?random=3"),
-        iconUrl = "https://picsum.photos/200?random=13",
-        githubUrl = "https://github.com/example/noteswift",
-        isArchived = true // ARCHIWALNY
-    ),
-
-    ProjectItem(
-        id = "4",
-        title = "BudgetX",
-        description = "Aplikacja do zarządzania budżetem z wykresami, kategoriami i integracją z bankami.",
-        previewImagesUrls = listOf("https://picsum.photos/600/900?random=4"),
-        iconUrl = "https://picsum.photos/200?random=14",
-        playStoreUrl = "https://play.google.com/store/apps/details?id=example.budgetx",
-        isArchived = false
-    ),
-
-    ProjectItem(
-        id = "5",
-        title = "WeatherPro",
-        description = "Nowoczesna aplikacja pogodowa z dynamicznymi animacjami i przewidywaniami AI.",
-        previewImagesUrls = listOf("https://picsum.photos/900/600?random=5"),
-        iconUrl = "https://picsum.photos/200?random=15",
-        githubUrl = "https://github.com/example/weatherpro",
-        externalUrl = "https://weatherpro.example.com",
-        isArchived = true
-    )
-)
-
-@OptIn(
-    ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class
-)
-@Composable
-fun PrivateProjectsSection(projects: List<ProjectItem> = sampleProjects) {
-    val carouselState = rememberCarouselState { projects.count() }
-    val windowSize = rememberWindowSize()
-    val coroutineScope = rememberCoroutineScope()
-
-    HorizontalUncontainedCarousel(
-        state = carouselState,
-        modifier = Modifier.then(
-            if (isMobile.not()) {
-                Modifier.draggable(
-                    orientation = Orientation.Horizontal,
-                    state = rememberDraggableState { delta ->
-                        val canScrollForward = carouselState.canScrollForward
-                        val canScrollBackward = carouselState.canScrollBackward
-                        coroutineScope.launch {
-                            when {
-                                delta < 0 && canScrollForward -> carouselState.scrollBy(-delta)
-                                delta > 0 && canScrollBackward -> carouselState.scrollBy(-delta)
-                                else -> Unit
-                            }
-                        }
-                    },
-                )
-            } else Modifier
-        ),
-        userScrollEnabled = true,
-        itemWidth = 300.dp,
-        itemSpacing = 8.dp,
-        contentPadding = PaddingValues(horizontal = 16.dp),
-    ) { index ->
-        ProjectCard(projects[index])
-    }
-}
 
 @Composable
-fun WheelScrollableLazyRow(items: List<ProjectItem> = sampleProjects) {
+fun PrivateProjectsSection(items: List<ProjectItem> = sampleProjects) {
     val listState = rememberLazyListState()
     val windowSize = rememberWindowSize()
     val coroutineScope = rememberCoroutineScope()
@@ -219,14 +120,13 @@ fun ProjectCard(project: ProjectItem) {
             imageUrls = project.previewImagesUrls,
             modifier = Modifier
                 .width(300.dp)
-                .clip(RoundedCornerShape(12.dp))
+                .clip(RoundedCornerShape(12.dp)),
+            backgroundColor = project.backgroundColor
         )
-
-
-        Column(Modifier.padding(12.dp).width(300.dp)) {
+        Column(Modifier.padding(8.dp).width(300.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                AsyncImage(
-                    model = project.iconUrl,
+                Image(
+                    painter = painterResource(project.iconUrl),
                     contentDescription = null,
                     modifier = Modifier
                         .size(40.dp)
@@ -242,7 +142,7 @@ fun ProjectCard(project: ProjectItem) {
                     )
                     if (project.isArchived) {
                         Text(
-                            text = "ARCHIWALNY",
+                            text = "ARCHIWALNA",
                             color = MaterialTheme.colorScheme.error,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold
@@ -252,17 +152,35 @@ fun ProjectCard(project: ProjectItem) {
             }
 
             Spacer(Modifier.height(8.dp))
-            Text(text = project.description, fontSize = 14.sp, modifier = Modifier.height(80.dp))
+            Text(text = project.description, fontSize = 14.sp, modifier = Modifier)
+            if (project.githubUrl != null || project.externalUrl != null || project.playStoreUrl != null || project.youtubeUrl != null) {
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = "Zobacz więcej na:",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier
+                )
+            }
+            project.githubUrl?.let {
+                Spacer(Modifier.height(8.dp))
+                LinkButton(label = "Github", it)
+            }
+            project.youtubeUrl?.let {
+                Spacer(Modifier.height(8.dp))
+                LinkButton(label = "Youtube", it)
+            }
         }
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ImageCarousel(
-    imageUrls: List<String>,
+private fun ImageCarousel(
+    imageUrls: List<DrawableResource>,
     modifier: Modifier = Modifier,
-    autoScrollDuration: Long = 4000
+    autoScrollDuration: Long = 4000,
+    backgroundColor: Color
 ) {
     val imageCount = imageUrls.size
     if (imageCount == 0) return
@@ -279,18 +197,18 @@ fun ImageCarousel(
         }
     }
 
-    Box(modifier) {
+    Box(modifier.background(color = backgroundColor.copy(alpha = 0.2f))) {
         HorizontalPager(
             state = pagerState,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(40.dp),
             userScrollEnabled = false
         ) { page ->
             val realIndex = page % imageCount
-            AsyncImage(
-                model = imageUrls[realIndex],
+            Image(
+                painter = painterResource(imageUrls[realIndex]),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Inside
             )
         }
         InfinitePagerIndicator(
@@ -302,7 +220,7 @@ fun ImageCarousel(
 }
 
 @Composable
-fun InfinitePagerIndicator(
+private fun InfinitePagerIndicator(
     modifier: Modifier,
     pagerState: PagerState,
     pageCount: Int,
@@ -364,14 +282,12 @@ fun LinkButton(label: String, url: String) {
         colors = ButtonDefaults.buttonColors(containerColor = Color.White),
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
-            .height(48.dp)
             .border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
     ) {
         Text(
             text = label,
             color = Color.Black,
-            fontFamily = HandwritingFont(),
-            style = MaterialTheme.typography.displaySmall
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }
