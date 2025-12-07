@@ -11,7 +11,10 @@ import androidx.compose.ui.Modifier
 import com.pawkrzysciak.portfolio.extensions.parallaxLayoutModifier
 import com.pawkrzysciak.portfolio.section.aboutme.AboutMeSection
 import com.pawkrzysciak.portfolio.section.hero.HeroSection
+import com.pawkrzysciak.portfolio.section.projects.PrivateProjectsSection
+import com.pawkrzysciak.portfolio.section.projects.WheelScrollableLazyRow
 import com.pawkrzysciak.portfolio.section.timeline.TimelineSection
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun App() {
@@ -33,6 +36,16 @@ fun PortfolioPage() {
         HeroSection(modifier = Modifier.parallaxLayoutModifier(scrollState, 2))
         AboutMeSection()
         TimelineSection()
+        WheelScrollableLazyRow()
+//        PrivateProjectsSection()
+    }
+}
+
+@Preview
+@Composable
+fun AppPreview() {
+    MaterialTheme {
+        App()
     }
 }
 
