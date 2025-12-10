@@ -48,7 +48,8 @@ fun EducationSection(modifier: Modifier) {
 data class EducationData(
     val school: String,
     val degree: String,
-    val period: String
+    val period: String,
+    val description: String
 )
 
 @Composable
@@ -79,6 +80,10 @@ fun EducationItem(education: EducationData) {
             Text(
                 text = education.period,
                 style = MaterialTheme.typography.bodyMedium.copy(color = Color.Gray)
+            )
+            Text(
+                text = education.description,
+                style = MaterialTheme.typography.bodySmall.copy(color = Color.Gray)
             )
         }
     }

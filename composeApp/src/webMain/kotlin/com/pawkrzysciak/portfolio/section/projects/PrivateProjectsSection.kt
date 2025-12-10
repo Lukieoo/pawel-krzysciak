@@ -15,6 +15,7 @@ import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -54,6 +55,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pawkrzysciak.portfolio.common.rememberWindowSize
 import com.pawkrzysciak.portfolio.fakes.sampleProjects
+import com.pawkrzysciak.portfolio.fakes.verticalProjects
 import com.pawkrzysciak.portfolio.section.hero.components.BackgroundGrid
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
 import kotlinx.coroutines.delay
@@ -63,7 +65,7 @@ import org.jetbrains.compose.resources.painterResource
 
 
 @Composable
-fun PrivateProjectsSection(items: List<ProjectItem> = sampleProjects) {
+fun PrivateProjectsSection(items: List<ProjectItem> = remember { sampleProjects }) {
     val listState = rememberLazyListState()
     val windowSize = rememberWindowSize()
     val coroutineScope = rememberCoroutineScope()
@@ -104,6 +106,90 @@ fun PrivateProjectsSection(items: List<ProjectItem> = sampleProjects) {
                     ProjectCard(items[index])
                 }
             }
+
+        }
+        Text(
+            text = "Projekty Gier",
+            style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.SemiBold),
+            modifier = Modifier.padding(horizontal = GetLayoutPadding(), vertical = 40.dp)
+        )
+        FlowRow(modifier = Modifier.padding(bottom = 40.dp)) {
+            verticalProjects.forEach {
+                VerticalProjectCard(
+                    it
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun VerticalProjectCard(project: ProjectItem) {
+    Box(
+        modifier = Modifier
+            .width(900.dp)
+            .padding(12.dp)
+            .background(color = Color.White)
+    ) {
+        ImageCarousel(
+            imageUrls = project.previewImagesUrls,
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(12.dp)),
+            backgroundColor = project.backgroundColor,
+            cropPadding = project.cropPadding,
+            isVertical = true
+        )
+        Column(
+            Modifier
+                .width(700.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .background(color = Color.White.copy(alpha = 0.8f))
+                .border(1.dp, Color.LightGray, RoundedCornerShape(12.dp))
+                .padding(12.dp)
+                .align(Alignment.BottomEnd)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(project.iconUrl),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(RoundedCornerShape(8.dp)),
+                    contentScale = ContentScale.Crop
+                )
+                Spacer(Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = project.title,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
+            Spacer(Modifier.height(8.dp))
+            Text(text = project.description, fontSize = 14.sp, modifier = Modifier)
+            if (project.githubUrl != null || project.externalUrl != null || project.playStoreUrl != null || project.youtubeUrl != null) {
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = "Zobacz więcej na:",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier
+                )
+                Spacer(Modifier.height(8.dp))
+            }
+            FlowRow {
+                project.playStoreUrl?.let {
+                    Spacer(Modifier.width(8.dp))
+                    LinkButton(label = "Google Play", it)
+                }
+                project.externalUrl?.let {
+                    Spacer(Modifier.width(8.dp))
+                    LinkButton(label = "itch.io", it)
+                }
+            }
         }
     }
 }
@@ -114,14 +200,15 @@ fun ProjectCard(project: ProjectItem) {
         modifier = Modifier
             .padding(12.dp)
             .background(color = Color.White.copy(alpha = 0.8f))
-            .border(1.dp, Color.White, RoundedCornerShape(12.dp))
+            .border(1.dp, Color.LightGray, RoundedCornerShape(12.dp))
     ) {
         ImageCarousel(
             imageUrls = project.previewImagesUrls,
             modifier = Modifier
                 .width(300.dp)
                 .clip(RoundedCornerShape(12.dp)),
-            backgroundColor = project.backgroundColor
+            backgroundColor = project.backgroundColor,
+            cropPadding = true
         )
         Column(Modifier.padding(8.dp).width(300.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -180,7 +267,9 @@ private fun ImageCarousel(
     imageUrls: List<DrawableResource>,
     modifier: Modifier = Modifier,
     autoScrollDuration: Long = 4000,
-    backgroundColor: Color
+    backgroundColor: Color,
+    cropPadding: Boolean,
+    isVertical: Boolean = false
 ) {
     val imageCount = imageUrls.size
     if (imageCount == 0) return
@@ -197,10 +286,17 @@ private fun ImageCarousel(
         }
     }
 
-    Box(modifier.background(color = backgroundColor.copy(alpha = 0.2f))) {
+    Box(
+        modifier.background(
+            color = if (isVertical) Color.Transparent else backgroundColor.copy(
+                alpha = 0.2f
+            )
+        )
+    ) {
         HorizontalPager(
             state = pagerState,
-            modifier = Modifier.fillMaxWidth().padding(40.dp),
+            modifier = Modifier.fillMaxWidth()
+                .padding(if (isVertical) 0.dp else if (cropPadding) 15.dp else 40.dp),
             userScrollEnabled = false
         ) { page ->
             val realIndex = page % imageCount
@@ -208,14 +304,16 @@ private fun ImageCarousel(
                 painter = painterResource(imageUrls[realIndex]),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Inside
+                contentScale = if (isVertical) ContentScale.Crop else ContentScale.Inside
             )
         }
-        InfinitePagerIndicator(
-            pagerState = pagerState,
-            pageCount = imageCount,
-            modifier = Modifier.align(Alignment.BottomCenter)
-        )
+        if (isVertical.not()) {
+            InfinitePagerIndicator(
+                pagerState = pagerState,
+                pageCount = imageCount,
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
+        }
     }
 }
 

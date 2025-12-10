@@ -3,6 +3,10 @@ package com.pawkrzysciak.portfolio.fakes
 import androidx.compose.ui.graphics.Color
 import com.pawkrzysciak.portfolio.section.projects.ProjectItem
 import portfolio.composeapp.generated.resources.Res
+import portfolio.composeapp.generated.resources.bm_0
+import portfolio.composeapp.generated.resources.bm_1
+import portfolio.composeapp.generated.resources.bm_2
+import portfolio.composeapp.generated.resources.bm_app_icon
 import portfolio.composeapp.generated.resources.looked_2
 import portfolio.composeapp.generated.resources.looked_3
 import portfolio.composeapp.generated.resources.looked_app_icon
@@ -14,7 +18,6 @@ import portfolio.composeapp.generated.resources.note_app_5
 import portfolio.composeapp.generated.resources.note_app_6
 import portfolio.composeapp.generated.resources.note_app_7
 import portfolio.composeapp.generated.resources.note_app_8
-import portfolio.composeapp.generated.resources.note_app_9
 import portfolio.composeapp.generated.resources.note_app_icon
 import portfolio.composeapp.generated.resources.quiz_app_1
 import portfolio.composeapp.generated.resources.quiz_app_2
@@ -50,7 +53,6 @@ val sampleProjects = listOf(
             Res.drawable.note_app_6,
             Res.drawable.note_app_7,
             Res.drawable.note_app_8,
-            Res.drawable.note_app_9,
         ),
         iconUrl = Res.drawable.note_app_icon,
         githubUrl = "https://github.com/Notes-Makers/notes-app-android",
@@ -74,7 +76,8 @@ val sampleProjects = listOf(
         githubUrl = "https://github.com/Quiz-makers/quiz-up-android",
         playStoreUrl = null,
         isArchived = false,
-        backgroundColor = Color(0xFF0277BD)
+        backgroundColor = Color(0xFF0277BD),
+        cropPadding = true
     ),
     ProjectItem(
         id = "3",
@@ -124,6 +127,26 @@ val sampleProjects = listOf(
         playStoreUrl = null,
         youtubeUrl = "https://www.youtube.com/watch?v=3D22nh299XI",
         isArchived = true,
-        backgroundColor = Color.LightGray
+        backgroundColor = Color.LightGray,
+        cropPadding = true
+    ),
+)
+val verticalProjects = listOf(
+    ProjectItem(
+        id = "1",
+        title = "Bounce Master",
+        description = "Ta prosta i wciągająca gra zręcznościowa została stworzona przy użyciu silnika Godot oraz języka GDScript. Projekt powstał jako małe, niezależne doświadczenie programistyczne – idealne dla fanów gier arcade i krótkich wyzwań.\n" +
+                "\n" +
+                "Sterujesz piłką, utrzymujesz ją w grze i zdobywasz jak najwięcej punktów. Mechanika jest prosta, ale wynik zależy tylko od Twojej zręczności i refleksu!",
+        previewImagesUrls = listOf(
+            Res.drawable.bm_0,
+            Res.drawable.bm_1,
+            Res.drawable.bm_2,
+        ),
+        iconUrl = Res.drawable.bm_app_icon,
+        githubUrl = null,
+        playStoreUrl = "https://play.google.com/store/apps/details?id=com.anioncode.bouncemaster",
+        externalUrl = "https://lukieoo.itch.io/bounce-master",
+        backgroundColor = Color.Transparent
     ),
 )

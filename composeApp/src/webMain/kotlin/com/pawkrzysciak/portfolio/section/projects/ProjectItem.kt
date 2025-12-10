@@ -14,5 +14,6 @@ data class ProjectItem(
     val externalUrl: String? = null,
     val isArchived: Boolean = false,
     val youtubeUrl: String? = null,
+    val cropPadding: Boolean = false,
     val backgroundColor: Color,
 )
