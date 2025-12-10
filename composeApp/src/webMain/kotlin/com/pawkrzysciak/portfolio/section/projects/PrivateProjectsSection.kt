@@ -1,12 +1,8 @@
 package com.pawkrzysciak.portfolio.section.projects
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.gestures.draggable
@@ -17,57 +13,36 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerState
-import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.pawkrzysciak.portfolio.common.rememberWindowSize
 import com.pawkrzysciak.portfolio.fakes.sampleProjects
 import com.pawkrzysciak.portfolio.fakes.verticalProjects
-import com.pawkrzysciak.portfolio.section.hero.components.BackgroundGrid
+import com.pawkrzysciak.portfolio.section.projects.components.ProjectCard
+import com.pawkrzysciak.portfolio.section.projects.components.VerticalProjectCard
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
+import portfolio.composeapp.generated.resources.Res
+import portfolio.composeapp.generated.resources.draw
 
 
 @Composable
 fun PrivateProjectsSection(items: List<ProjectItem> = remember { sampleProjects }) {
     val listState = rememberLazyListState()
-    val windowSize = rememberWindowSize()
     val coroutineScope = rememberCoroutineScope()
 
     Column(
@@ -84,7 +59,6 @@ fun PrivateProjectsSection(items: List<ProjectItem> = remember { sampleProjects 
             modifier = Modifier.fillMaxWidth().height(550.dp).background(color = Color.White),
             contentAlignment = Alignment.Center
         ) {
-            BackgroundGrid(windowSize = DpSize(width = windowSize.width, height = 550.dp))
             LazyRow(
                 state = listState,
                 contentPadding = PaddingValues(horizontal = 16.dp),
@@ -105,287 +79,24 @@ fun PrivateProjectsSection(items: List<ProjectItem> = remember { sampleProjects 
                 items(items.count()) { index ->
                     ProjectCard(items[index])
                 }
+                items(verticalProjects.count()) { index ->
+                    VerticalProjectCard(verticalProjects[index])
+                }
             }
 
         }
-        Text(
-            text = "Projekty Gier",
-            style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.SemiBold),
-            modifier = Modifier.padding(horizontal = GetLayoutPadding(), vertical = 40.dp)
-        )
-        FlowRow(modifier = Modifier.padding(bottom = 40.dp)) {
-            verticalProjects.forEach {
-                VerticalProjectCard(
-                    it
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun VerticalProjectCard(project: ProjectItem) {
-    Box(
-        modifier = Modifier
-            .width(900.dp)
-            .padding(12.dp)
-            .background(color = Color.White)
-    ) {
-        ImageCarousel(
-            imageUrls = project.previewImagesUrls,
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(12.dp)),
-            backgroundColor = project.backgroundColor,
-            cropPadding = project.cropPadding,
-            isVertical = true
-        )
-        Column(
-            Modifier
-                .width(700.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .background(color = Color.White.copy(alpha = 0.8f))
-                .border(1.dp, Color.LightGray, RoundedCornerShape(12.dp))
-                .padding(12.dp)
-                .align(Alignment.BottomEnd)
+        FlowRow(
+            modifier = Modifier.padding(vertical = 40.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Center
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image(
-                    painter = painterResource(project.iconUrl),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(40.dp)
-                        .clip(RoundedCornerShape(8.dp)),
-                    contentScale = ContentScale.Crop
-                )
-                Spacer(Modifier.width(8.dp))
-                Column {
-                    Text(
-                        text = project.title,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-            }
-
-            Spacer(Modifier.height(8.dp))
-            Text(text = project.description, fontSize = 14.sp, modifier = Modifier)
-            if (project.githubUrl != null || project.externalUrl != null || project.playStoreUrl != null || project.youtubeUrl != null) {
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    text = "Zobacz więcej na:",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier
-                )
-                Spacer(Modifier.height(8.dp))
-            }
-            FlowRow {
-                project.playStoreUrl?.let {
-                    Spacer(Modifier.width(8.dp))
-                    LinkButton(label = "Google Play", it)
-                }
-                project.externalUrl?.let {
-                    Spacer(Modifier.width(8.dp))
-                    LinkButton(label = "itch.io", it)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun ProjectCard(project: ProjectItem) {
-    Row(
-        modifier = Modifier
-            .padding(12.dp)
-            .background(color = Color.White.copy(alpha = 0.8f))
-            .border(1.dp, Color.LightGray, RoundedCornerShape(12.dp))
-    ) {
-        ImageCarousel(
-            imageUrls = project.previewImagesUrls,
-            modifier = Modifier
-                .width(300.dp)
-                .clip(RoundedCornerShape(12.dp)),
-            backgroundColor = project.backgroundColor,
-            cropPadding = true
-        )
-        Column(Modifier.padding(8.dp).width(300.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image(
-                    painter = painterResource(project.iconUrl),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(40.dp)
-                        .clip(RoundedCornerShape(8.dp)),
-                    contentScale = ContentScale.Crop
-                )
-                Spacer(Modifier.width(8.dp))
-                Column {
-                    Text(
-                        text = project.title,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    if (project.isArchived) {
-                        Text(
-                            text = "ARCHIWALNA",
-                            color = MaterialTheme.colorScheme.error,
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.SemiBold
-                        )
-                    }
-                }
-            }
-
-            Spacer(Modifier.height(8.dp))
-            Text(text = project.description, fontSize = 14.sp, modifier = Modifier)
-            if (project.githubUrl != null || project.externalUrl != null || project.playStoreUrl != null || project.youtubeUrl != null) {
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    text = "Zobacz więcej na:",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier
-                )
-            }
-            project.githubUrl?.let {
-                Spacer(Modifier.height(8.dp))
-                LinkButton(label = "Github", it)
-            }
-            project.youtubeUrl?.let {
-                Spacer(Modifier.height(8.dp))
-                LinkButton(label = "Youtube", it)
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-private fun ImageCarousel(
-    imageUrls: List<DrawableResource>,
-    modifier: Modifier = Modifier,
-    autoScrollDuration: Long = 4000,
-    backgroundColor: Color,
-    cropPadding: Boolean,
-    isVertical: Boolean = false
-) {
-    val imageCount = imageUrls.size
-    if (imageCount == 0) return
-
-    val infinitePages = Int.MAX_VALUE
-    val startIndex = infinitePages / 2 - (infinitePages / 2 % imageCount)
-
-    val pagerState = rememberPagerState { startIndex }
-
-    LaunchedEffect(pagerState.currentPage) {
-        if (imageCount > 1) {
-            delay(autoScrollDuration)
-            pagerState.scrollToPage(pagerState.currentPage + 1)
-        }
-    }
-
-    Box(
-        modifier.background(
-            color = if (isVertical) Color.Transparent else backgroundColor.copy(
-                alpha = 0.2f
-            )
-        )
-    ) {
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier.fillMaxWidth()
-                .padding(if (isVertical) 0.dp else if (cropPadding) 15.dp else 40.dp),
-            userScrollEnabled = false
-        ) { page ->
-            val realIndex = page % imageCount
+            TechnologiesAndToolsSection()
             Image(
-                painter = painterResource(imageUrls[realIndex]),
+                painter = painterResource(Res.drawable.draw),
                 contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = if (isVertical) ContentScale.Crop else ContentScale.Inside
+                modifier = Modifier.weight(1f).size(600.dp),
             )
+
         }
-        if (isVertical.not()) {
-            InfinitePagerIndicator(
-                pagerState = pagerState,
-                pageCount = imageCount,
-                modifier = Modifier.align(Alignment.BottomCenter)
-            )
-        }
-    }
-}
-
-@Composable
-private fun InfinitePagerIndicator(
-    modifier: Modifier,
-    pagerState: PagerState,
-    pageCount: Int,
-    activeSize: Dp = 10.dp,
-    inactiveSize: Dp = 6.dp,
-    spacing: Dp = 6.dp,
-    activeColor: Color = Color.White,
-    inactiveColor: Color = Color.Gray
-
-) {
-    if (pageCount <= 1) return
-
-    val currentRealIndex by remember {
-        derivedStateOf {
-            (pagerState.currentPage % pageCount + pageCount) % pageCount
-        }
-    }
-
-    val scope = rememberCoroutineScope()
-
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .height(20.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Row(horizontalArrangement = Arrangement.Center) {
-            for (i in 0 until pageCount) {
-                val isActive = i == currentRealIndex
-                val dotSize by animateDpAsState(targetValue = if (isActive) activeSize else inactiveSize)
-                val dotColor by animateColorAsState(targetValue = if (isActive) activeColor else inactiveColor)
-
-                Box(
-                    modifier = Modifier
-                        .padding(horizontal = spacing / 2)
-                        .size(dotSize)
-                        .clip(CircleShape)
-                        .background(dotColor)
-                        .clickable {
-                            scope.launch {
-                                val base = pagerState.currentPage
-                                val baseIndex = (base % pageCount + pageCount) % pageCount
-                                val delta = i - baseIndex
-                                pagerState.animateScrollToPage(base + delta)
-                            }
-                        }
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun LinkButton(label: String, url: String) {
-    val uriHandler = LocalUriHandler.current
-    Button(
-        onClick = { uriHandler.openUri(url) },
-        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-        shape = RoundedCornerShape(12.dp),
-        modifier = Modifier
-            .border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
-    ) {
-        Text(
-            text = label,
-            color = Color.Black,
-            style = MaterialTheme.typography.bodyMedium
-        )
     }
 }

@@ -150,3 +150,29 @@ val verticalProjects = listOf(
         backgroundColor = Color.Transparent
     ),
 )
+
+val technologies = listOf(
+    "Kotlin", "Jetpack Compose", "Room", "Retrofit", "Ktor",
+    "Coroutines", "Firebase", "MongoDB", "Koin", "GraphQL",
+    "Compose Multiplatform", "Serialization", "Moshi", "Git", "Jetpack Libraries"
+)
+
+val tools = listOf(
+    "Android Studio",
+    "Postman",
+    "Charles Proxy",
+    "Perfetto",
+    "Ollama",
+    "Figma",
+    "Jira",
+    "Docker",
+    "Jenkins",
+    "Bitbucket",
+    "Gitlab",
+    "Github",
+)
+
+val hobbies = listOf(
+    "Godot Engine", "Blender", "Grafika wektorowa", "Tworzenie mini gier",
+    "UI/UX", "Spring Boot"
+)
