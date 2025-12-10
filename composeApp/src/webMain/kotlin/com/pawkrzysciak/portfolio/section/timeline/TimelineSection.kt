@@ -14,9 +14,9 @@ import com.pawkrzysciak.portfolio.section.experience.ExperienceSection
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
 
 @Composable
-fun TimelineSection() {
+fun TimelineSection(modifier: Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(Color.White)
             .padding(horizontal = GetLayoutPadding(), vertical = 80.dp)

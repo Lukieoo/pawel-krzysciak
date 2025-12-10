@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -42,7 +41,7 @@ import com.pawkrzysciak.portfolio.section.hero.components.HandwritingFont
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
 
 @Composable
-fun AboutMeSection() {
+fun AboutMeSection(modifier: Modifier) {
     val animationPlayed = remember { mutableStateOf(false) }
     val experienceYears = 6
     val animatedExperience by animateIntAsState(
@@ -55,7 +54,7 @@ fun AboutMeSection() {
     LaunchedEffect(Unit) { visible = true }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .border(1.dp, Color.LightGray)
             .background(Color.White)

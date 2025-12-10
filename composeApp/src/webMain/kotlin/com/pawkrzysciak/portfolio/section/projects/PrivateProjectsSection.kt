@@ -1,6 +1,5 @@
 package com.pawkrzysciak.portfolio.section.projects
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.Orientation
@@ -8,15 +7,12 @@ import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.gestures.scrollBy
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
@@ -35,18 +31,18 @@ import com.pawkrzysciak.portfolio.section.projects.components.ProjectCard
 import com.pawkrzysciak.portfolio.section.projects.components.VerticalProjectCard
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.painterResource
-import portfolio.composeapp.generated.resources.Res
-import portfolio.composeapp.generated.resources.draw
 
 
 @Composable
-fun PrivateProjectsSection(items: List<ProjectItem> = remember { sampleProjects }) {
+fun PrivateProjectsSection(
+    modifier: Modifier,
+    items: List<ProjectItem> = remember { sampleProjects },
+) {
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .border(1.dp, Color.LightGray)
             .background(Color.White),
     ) {
@@ -83,19 +79,6 @@ fun PrivateProjectsSection(items: List<ProjectItem> = remember { sampleProjects 
                     VerticalProjectCard(verticalProjects[index])
                 }
             }
-
-        }
-        FlowRow(
-            modifier = Modifier.padding(vertical = 40.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalArrangement = Arrangement.Center
-        ) {
-            TechnologiesAndToolsSection()
-            Image(
-                painter = painterResource(Res.drawable.draw),
-                contentDescription = null,
-                modifier = Modifier.weight(1f).size(600.dp),
-            )
 
         }
     }
