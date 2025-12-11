@@ -3,19 +3,18 @@ package com.pawkrzysciak.portfolio
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -23,14 +22,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.pawkrzysciak.portfolio.common.rememberWindowSize
@@ -57,47 +54,41 @@ fun App() {
 @OptIn(ExperimentalWasmJsInterop::class)
 @Composable
 fun PortfolioPage() {
-    val scrollState = rememberScrollState()
+    val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
-    val sectionOffsets = remember { mutableMapOf<String, Int>() }
     val windowsSize = rememberWindowSize()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        Column(
+        LazyColumn(
+            state = listState,
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-                .verticalScroll(scrollState)
+                .background(Color.White)
         ) {
-            HeroSection(
-                modifier = Modifier
-                    .parallaxLayoutModifier(scrollState, 2)
-                    .onGloballyPositioned { coordinates ->
-                        sectionOffsets["Home"] = coordinates.positionInParent().y.toInt()
-                    })
-            AboutMeSection(
-                modifier = Modifier.onGloballyPositioned { coordinates ->
-                    sectionOffsets["O mnie"] = coordinates.positionInParent().y.toInt()
-                })
-            TimelineSection(
-                modifier = Modifier.onGloballyPositioned { coordinates ->
-                    sectionOffsets["Oś czasu"] = coordinates.positionInParent().y.toInt()
-                })
-            PrivateProjectsSection(
-                modifier = Modifier.onGloballyPositioned { coordinates ->
-                    sectionOffsets["Projekty"] = coordinates.positionInParent().y.toInt()
-                })
-            TechnologiesAndToolsSection(
-                modifier = Modifier.onGloballyPositioned { coordinates ->
-                    sectionOffsets["Technologie"] = coordinates.positionInParent().y.toInt()
-                })
-            FooterSection()
+            item("Home") {
+                HeroSection(modifier = Modifier.parallaxLayoutModifier(listState, 2))
+            }
+            item("O mnie") {
+                AboutMeSection(modifier = Modifier)
+            }
+            item("Oś czasu") {
+                TimelineSection(modifier = Modifier)
+            }
+            item("Projekty") {
+                PrivateProjectsSection(modifier = Modifier)
+            }
+            item("Technologie") {
+                TechnologiesAndToolsSection(modifier = Modifier)
+            }
+            item("Footer") {
+                FooterSection()
+            }
         }
-        if (isMobile.not() && windowsSize.width > 800.dp) {
+
+        if (!isMobile && windowsSize.width > 800.dp) {
             DesktopMenu(
                 modifier = Modifier.align(Alignment.TopEnd),
-                sectionOffsets = sectionOffsets,
-                scrollState = scrollState,
+                scrollState = listState,
                 coroutineScope = coroutineScope
             )
         }
@@ -106,21 +97,16 @@ fun PortfolioPage() {
 
 @Composable
 fun DesktopMenu(
-    sectionOffsets: Map<String, Int>,
-    scrollState: ScrollState,
+    scrollState: LazyListState,
     coroutineScope: CoroutineScope,
     modifier: Modifier
 ) {
     val sections = listOf("Home", "O mnie", "Oś czasu", "Projekty", "Technologie")
     val windowsSize = rememberWindowSize()
-    val currentSection by remember(windowsSize) {
+
+    val currentSection by rememberSaveable(windowsSize, scrollState) {
         derivedStateOf {
-            val scrollY = scrollState.value + windowsSize.height.value / 2
-            sections.lastOrNull { section ->
-                sectionOffsets[section]?.let { offset ->
-                    scrollY >= offset
-                } ?: false
-            } ?: "Home"
+            scrollState.layoutInfo.visibleItemsInfo.firstOrNull()?.key.toString()
         }
     }
 
@@ -147,10 +133,9 @@ fun DesktopMenu(
                     if (section == "Home") {
                         window.location.reload()
                     } else {
-                        sectionOffsets[section]?.let { y ->
-                            coroutineScope.launch {
-                                scrollState.animateScrollTo(y)
-                            }
+                        coroutineScope.launch {
+                            val targetIndex = sections.indexOf(section)
+                            scrollState.animateScrollToItem(targetIndex)
                         }
                     }
                 },

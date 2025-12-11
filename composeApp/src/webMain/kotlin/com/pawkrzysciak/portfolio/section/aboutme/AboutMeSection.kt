@@ -28,6 +28,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,15 +43,15 @@ import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
 
 @Composable
 fun AboutMeSection(modifier: Modifier) {
-    val animationPlayed = remember { mutableStateOf(false) }
+    val animationPlayed = rememberSaveable { mutableStateOf(false) }
     val experienceYears = 6
     val animatedExperience by animateIntAsState(
         targetValue = if (animationPlayed.value) experienceYears else 0,
-        animationSpec = tween(durationMillis = 1600, easing = FastOutSlowInEasing)
+        animationSpec = tween(durationMillis = 1000, easing = FastOutSlowInEasing)
     )
     LaunchedEffect(Unit) { animationPlayed.value = true }
 
-    var visible by remember { mutableStateOf(false) }
+    var visible by rememberSaveable { mutableStateOf(false) }
     LaunchedEffect(Unit) { visible = true }
 
     Box(
@@ -123,7 +124,7 @@ fun AboutMeTextColumn(modifier: Modifier) {
 @Composable
 fun SocialButtonsRow() {
     val uriHandler = LocalUriHandler.current
-    FlowRow (horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
         SocialButton("GitHub", "https://github.com/Lukieoo", uriHandler)
         SocialButton(
             "LinkedIn",
