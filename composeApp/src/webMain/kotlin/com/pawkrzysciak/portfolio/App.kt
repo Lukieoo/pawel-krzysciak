@@ -106,7 +106,8 @@ fun DesktopMenu(
 
     val currentSection by rememberSaveable(windowsSize, scrollState) {
         derivedStateOf {
-            scrollState.layoutInfo.visibleItemsInfo.firstOrNull()?.key.toString()
+            scrollState.layoutInfo.visibleItemsInfo.firstOrNull { itemInfo -> itemInfo.offset > -100 }?.key
+                ?: "Home"
         }
     }
 
