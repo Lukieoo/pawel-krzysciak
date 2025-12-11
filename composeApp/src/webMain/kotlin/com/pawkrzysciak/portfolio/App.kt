@@ -127,7 +127,7 @@ fun DesktopMenu(
     Row(
         modifier = modifier
             .padding(horizontal = 32.dp, vertical = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         sections.forEach { section ->
@@ -155,8 +155,8 @@ fun DesktopMenu(
                     }
                 },
                 modifier = Modifier
-                    .height(48.dp)
-                    .widthIn(min = 120.dp)
+                    .height(38.dp)
+                    .widthIn(min = 100.dp)
                     .clip(RoundedCornerShape(6.dp)),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = backgroundColor,
@@ -167,11 +167,10 @@ fun DesktopMenu(
             ) {
                 Text(
                     text = section,
-                    style = MaterialTheme.typography.labelLarge,
+                    style = MaterialTheme.typography.labelMedium,
                     fontWeight = FontWeight.SemiBold
                 )
             }
         }
     }
-
 }

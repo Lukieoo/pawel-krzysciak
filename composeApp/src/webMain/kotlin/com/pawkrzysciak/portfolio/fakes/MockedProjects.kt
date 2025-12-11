@@ -128,7 +128,7 @@ val sampleProjects = listOf(
         youtubeUrl = "https://www.youtube.com/watch?v=3D22nh299XI",
         isArchived = true,
         backgroundColor = Color.LightGray,
-        cropPadding = true
+        cropPadding = false
     ),
 )
 val verticalProjects = listOf(
