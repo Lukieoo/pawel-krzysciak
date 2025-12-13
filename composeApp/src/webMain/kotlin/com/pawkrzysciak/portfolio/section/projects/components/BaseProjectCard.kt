@@ -3,9 +3,12 @@ package com.pawkrzysciak.portfolio.section.projects.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,28 +23,22 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pawkrzysciak.portfolio.section.projects.ProjectItem
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun ProjectCard(project: ProjectItem) {
+fun BaseProjectCard(project: ProjectItem) {
     Row(
         modifier = Modifier
-            .padding(12.dp)
+            .fillMaxHeight()
+            .padding(8.dp)
             .background(color = Color.White.copy(alpha = 0.8f))
             .border(1.dp, Color.LightGray, RoundedCornerShape(12.dp))
     ) {
-        ImageCarousel(
-            imageUrls = project.previewImagesUrls,
-            modifier = Modifier
-                .width(300.dp)
-                .clip(RoundedCornerShape(12.dp)),
-            backgroundColor = project.backgroundColor,
-            cropPadding = true
-        )
-        Column(Modifier.padding(8.dp).width(300.dp)) {
+        Column(Modifier.padding(16.dp).width(350.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(project.iconUrl),
@@ -70,7 +67,12 @@ fun ProjectCard(project: ProjectItem) {
             }
 
             Spacer(Modifier.height(8.dp))
-            Text(text = project.description, fontSize = 14.sp, modifier = Modifier)
+            Text(
+                text = project.description,
+                fontSize = 14.sp,
+                textAlign = TextAlign.Start,
+                modifier = Modifier
+            )
             if (project.githubUrl != null || project.externalUrl != null || project.playStoreUrl != null || project.youtubeUrl != null) {
                 Spacer(Modifier.height(8.dp))
                 Text(
@@ -79,14 +81,24 @@ fun ProjectCard(project: ProjectItem) {
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
                 )
-            }
-            project.githubUrl?.let {
                 Spacer(Modifier.height(8.dp))
-                LinkButton(label = "Github", it)
             }
-            project.youtubeUrl?.let {
-                Spacer(Modifier.height(8.dp))
-                LinkButton(label = "Youtube", it)
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                project.playStoreUrl?.let {
+                    LinkButton(label = "Google Play", it)
+                }
+                project.externalUrl?.let {
+                    LinkButton(label = "itch.io", it)
+                }
+                project.githubUrl?.let {
+                    LinkButton(label = "Github", it)
+                }
+                project.youtubeUrl?.let {
+                    LinkButton(label = "Youtube", it)
+                }
             }
         }
     }

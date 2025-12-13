@@ -14,7 +14,7 @@ val experiences = listOf(
         company = "POSbistro",
         role = "Android Developer",
         period = "Gru 2021 — Kwi 2022\nJunior Android Developer: Lut 2021 — Gru 2021",
-        location = "Polska",
+        location = "Kraków, Polska",
         description = "Tworzyłem i rozwijałem aplikacje mobilne dla branży gastronomicznej.\nOdpowiadałem za rozwój i utrzymanie systemu POS."
     ),
     ExperienceData(
@@ -22,6 +22,6 @@ val experiences = listOf(
         role = "Android Developer",
         period = "Lis 2019 — Sty 2021",
         location = "Kraków, Polska",
-        description = "Tworzyłem oprogramowanie na platformę Android oraz utrzymywałem istniejące projekty.\nWykorzystywałem także rozwiązania cross-platformowe z użyciem frameworka Flutter."
+        description = "Tworzyłem oprogramowanie na platformę Android.\nWykorzystywałem także rozwiązania cross-platformowe z użyciem frameworka Flutter."
     )
 )

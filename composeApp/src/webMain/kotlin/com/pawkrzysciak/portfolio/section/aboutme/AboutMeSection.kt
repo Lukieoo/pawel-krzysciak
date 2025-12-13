@@ -21,13 +21,13 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -54,37 +54,44 @@ fun AboutMeSection(modifier: Modifier) {
     var visible by rememberSaveable { mutableStateOf(false) }
     LaunchedEffect(Unit) { visible = true }
 
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .border(1.dp, Color.LightGray)
-            .background(Color.White)
-            .padding(horizontal = GetLayoutPadding(), vertical = 120.dp),
-        contentAlignment = Alignment.CenterStart
-    ) {
-        FlowRow(
-            verticalArrangement = Arrangement.Center,
-            horizontalArrangement = Arrangement.Center,
-            itemVerticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
+    Column {
+        HorizontalDivider(
+            modifier = Modifier.fillMaxWidth(),
+            color = Color.LightGray,
+            thickness = 1.dp
+        )
+        Box(
+            modifier = modifier
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(horizontal = GetLayoutPadding(), vertical = 120.dp),
+            contentAlignment = Alignment.CenterStart
         ) {
-            AnimatedVisibility(
-                visible = visible,
-                enter = fadeIn(animationSpec = tween(800)) +
-                        slideInVertically(
-                            initialOffsetY = { it / 2 },
-                            animationSpec = tween(800)
-                        )
+
+            FlowRow(
+                verticalArrangement = Arrangement.Center,
+                horizontalArrangement = Arrangement.Center,
+                itemVerticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
             ) {
-                AboutMeTextColumn(
+                AnimatedVisibility(
+                    visible = visible,
+                    enter = fadeIn(animationSpec = tween(800)) +
+                            slideInVertically(
+                                initialOffsetY = { it / 2 },
+                                animationSpec = tween(800)
+                            )
+                ) {
+                    AboutMeTextColumn(
+                        modifier = Modifier.weight(1f),
+                    )
+                }
+
+                ExperienceColumn(
                     modifier = Modifier.weight(1f),
+                    animatedExperience = animatedExperience
                 )
             }
-
-            ExperienceColumn(
-                modifier = Modifier.weight(1f),
-                animatedExperience = animatedExperience
-            )
         }
     }
 }
@@ -105,7 +112,8 @@ fun AboutMeTextColumn(modifier: Modifier) {
                     "Po godzinach rozwijam własne aplikacje, tworzę UI/UX i eksperymentuję z grafiką. Dodatkowo piszę gry w silniku Godot, co pozwala mi rozwijać kreatywność i umiejętności projektowe.",
             style = MaterialTheme.typography.bodyLarge.copy(
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.85f)
-            )
+            ),
+            textAlign = TextAlign.Justify
         )
 
         Spacer(Modifier.height(16.dp))
@@ -124,7 +132,10 @@ fun AboutMeTextColumn(modifier: Modifier) {
 @Composable
 fun SocialButtonsRow() {
     val uriHandler = LocalUriHandler.current
-    FlowRow(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+    FlowRow(
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
         SocialButton("GitHub", "https://github.com/Lukieoo", uriHandler)
         SocialButton(
             "LinkedIn",

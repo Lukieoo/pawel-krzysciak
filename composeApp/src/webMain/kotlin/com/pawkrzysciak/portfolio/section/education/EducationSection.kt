@@ -1,5 +1,9 @@
 package com.pawkrzysciak.portfolio.section.education
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -7,40 +11,57 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.pawkrzysciak.portfolio.fakes.educationList
+import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
 
 @Composable
 fun EducationSection(modifier: Modifier) {
-
-
-    Column(
-        modifier = modifier
+    var visible by rememberSaveable { mutableStateOf(false) }
+    LaunchedEffect(Unit) { visible = true }
+    AnimatedVisibility(
+        modifier = modifier,
+        visible = visible,
+        enter = fadeIn(animationSpec = tween(800)) +
+                slideInHorizontally(
+                    initialOffsetX = { fullWidth -> fullWidth / 2 },
+                    animationSpec = tween(800)
+                )
     ) {
-        Text(
-            text = "Edukacja",
-            style = MaterialTheme.typography.headlineMedium.copy(
-                fontWeight = FontWeight.SemiBold
+        Column(
+            modifier = Modifier.padding(horizontal = GetLayoutPadding(), vertical = 20.dp),
+        ) {
+            Text(
+                text = "Edukacja",
+                style = MaterialTheme.typography.headlineMedium.copy(
+                    fontWeight = FontWeight.SemiBold
+                )
             )
-        )
 
-        Spacer(Modifier.height(32.dp))
+            Spacer(Modifier.height(32.dp))
 
-        educationList.forEach { edu ->
-            EducationItem(
-                education = edu,
-            )
-            Spacer(Modifier.height(24.dp))
+            educationList.forEach { edu ->
+                EducationItem(
+                    education = edu,
+                )
+                Spacer(Modifier.height(24.dp))
+            }
         }
     }
 }

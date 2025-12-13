@@ -82,7 +82,7 @@ val sampleProjects = listOf(
     ProjectItem(
         id = "3",
         title = "Drzewostan - szacunki brakarskie",
-        description = "Aplikacja do notowania liczby drzew z podziałem na klasy oraz średnice. Ułatwia pracę przy wykonywaniu szacunków brakarskich, umożliwia zapisywanie wyników oraz ich przesyłanie na inne urządzenia za pomocą wygenerowanego pliku PDF. \nNiestety obecnie została wycofana ze sklepu google play",
+        description = "Aplikacja do notowania liczby drzew z podziałem na klasy oraz średnice. Ułatwia pracę przy wykonywaniu szacunków brakarskich, umożliwia zapisywanie wyników oraz ich przesyłanie na inne urządzenia za pomocą wygenerowanego pliku PDF.",
         previewImagesUrls = listOf(
             Res.drawable.tree_1,
             Res.drawable.tree_2,
@@ -99,7 +99,7 @@ val sampleProjects = listOf(
     ProjectItem(
         id = "4",
         title = "Spojrzyj - Soczewki kontaktowe",
-        description = "Aplikacja ułatwiająca zarządzanie terminami wymiany soczewek kontaktowych. Użytkownik wybiera typ soczewki oraz datę pierwszego założenia, a system automatycznie przypomina o konieczności ich wymiany we właściwym czasie. W aktualnej wersji dostępny jest również praktyczny widget, umożliwiający szybki podgląd informacji prosto z ekranu głównego. \nNiestety obecnie została wycofana ze sklepu google play",
+        description = "Aplikacja ułatwiająca zarządzanie terminami wymiany soczewek kontaktowych. Użytkownik wybiera typ soczewki oraz datę pierwszego założenia, a system automatycznie przypomina o konieczności ich wymiany we właściwym czasie. W aktualnej wersji dostępny jest również praktyczny widget, umożliwiający szybki podgląd informacji prosto z ekranu głównego.",
         previewImagesUrls = listOf(
             Res.drawable.looked_2,
             Res.drawable.looked_3,
@@ -114,7 +114,7 @@ val sampleProjects = listOf(
     ProjectItem(
         id = "5",
         title = "Smoguś - Jakość powietrza ",
-        description = "Aplikacja stworzona z myślą o zwiększeniu świadomości użytkowników na temat jakości powietrza, którym oddychają na co dzień. Dane pomiarowe pobierane są z oficjalnych stacji monitorujących GIOŚ, co zapewnia wysoką wiarygodność informacji. Użytkownik może przeglądać wartości zanieczyszczeń na interaktywnej mapie Polski oraz sprawdzać szczegółowe wyniki dla wybranych regionów. \nNiestety obecnie została wycofana ze sklepu google play",
+        description = "Aplikacja stworzona z myślą o zwiększeniu świadomości użytkowników na temat jakości powietrza, którym oddychają na co dzień. Dane pomiarowe pobierane są z oficjalnych stacji monitorujących GIOŚ, co zapewnia wysoką wiarygodność informacji. Użytkownik może przeglądać wartości zanieczyszczeń na interaktywnej mapie Polski oraz sprawdzać szczegółowe wyniki dla wybranych regionów.",
         previewImagesUrls = listOf(
             Res.drawable.smogus_2,
             Res.drawable.smogus_1,
