@@ -9,9 +9,11 @@ import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +23,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -72,7 +77,22 @@ fun PrivateProjectsSection(
                             listState.animateScrollBy(velocity / 10)
                         }
                     }
-                )
+                ).drawWithContent {
+                    drawContent()
+                    val gradientWidth = 80.dp.toPx()
+                    drawRect(
+                        brush = Brush.horizontalGradient(
+                            colors = listOf(Color.Transparent, Color.White),
+                            startX = size.width - gradientWidth,
+                            endX = size.width
+                        ),
+                        topLeft = Offset(x = size.width - gradientWidth, y = 0f),
+                        size = androidx.compose.ui.geometry.Size(
+                            width = gradientWidth,
+                            height = size.height
+                        )
+                    )
+                }
             ) {
                 if (SHOW_BASE_CARD_VIEW_ITEM_ONLY) {
                     val baseItems = itemsHorizontal + itemsVertical
@@ -86,6 +106,9 @@ fun PrivateProjectsSection(
                     items(itemsVertical.count()) { index ->
                         VerticalProjectCard(verticalProjects[index])
                     }
+                }
+                item {
+                    Spacer(modifier = Modifier.width(80.dp))
                 }
             }
         }
