@@ -44,7 +44,7 @@ object StringsPl : Strings {
     // POSbistro
     override val posbistroRole = "Android Developer"
     override val posbistroPeriod =
-        "Gru 2021 — Kwi 2022\nJunior Android Developer: Lut 2021 — Gru 2021"
+        "Mid: Gru 2021 — Kwi 2022\nJunior: Lut 2021 — Gru 2021"
     override val posbistroLocation = "Kraków, Polska"
     override val posbistroDescription =
         "Tworzyłem i rozwijałem aplikacje mobilne dla branży gastronomicznej.\n" +
@@ -92,4 +92,8 @@ object StringsPl : Strings {
     override val technologiesLabel = "Technologie:"
     override val toolsLabel = "Narzędzia i programy:"
     override val hobbiesLabel = "Hobbystycznie:"
+    override val archive = "ARCHIWALNA"
+    override val drzewostan = "Drzewostan - szacunki brakarskie"
+    override val spojrzyj = "Spojrzyj - Soczewki kontaktowe"
+    override val smogus = "Smoguś - Jakość powietrza "
 }

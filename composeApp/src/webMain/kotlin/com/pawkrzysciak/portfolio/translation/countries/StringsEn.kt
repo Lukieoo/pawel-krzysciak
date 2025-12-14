@@ -59,7 +59,7 @@ object StringsEn : Strings {
     // POSbistro
     override val posbistroRole = "Android Developer"
     override val posbistroPeriod =
-        "Dec 2021 — Apr 2022\nJunior Android Developer: Feb 2021 — Dec 2021"
+        "Mid: Dec 2021 — Apr 2022\nJunior: Feb 2021 — Dec 2021"
     override val posbistroLocation = "Kraków, Poland"
     override val posbistroDescription =
         "Developed and maintained mobile applications for the food service industry.\n" +
@@ -122,4 +122,9 @@ object StringsEn : Strings {
     override val technologiesLabel = "Technologies:"
     override val toolsLabel = "Tools & software:"
     override val hobbiesLabel = "Hobby:"
+    override val archive = "Archived"
+
+    override val drzewostan = "Forest Inventory – Timber Estimation"
+    override val spojrzyj = "Spojrzyj – Contact Lens Tracker"
+    override val smogus = "Smoguś – Air Quality Monitor"
 }

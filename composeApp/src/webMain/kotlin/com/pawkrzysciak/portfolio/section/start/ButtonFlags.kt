@@ -50,7 +50,7 @@ fun UnicodeFlagButton(
     if (CurrentStrings.strings == strings) return
     Box(
         modifier = modifier
-            .size(60.dp)
+            .size(50.dp)
             .clip(CircleShape)
             .background(Color.White)
             .border(

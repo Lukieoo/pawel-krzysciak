@@ -67,4 +67,10 @@ interface Strings {
     val technologiesLabel: String
     val toolsLabel: String
     val hobbiesLabel: String
+    val archive: String
+
+    val drzewostan: String
+    val spojrzyj: String
+    val smogus: String
+
 }

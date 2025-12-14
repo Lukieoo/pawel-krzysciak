@@ -61,7 +61,7 @@ fun ProjectCard(project: ProjectItem) {
                     )
                     if (project.isArchived) {
                         Text(
-                            text = "ARCHIWALNA",
+                            text = CurrentStrings.strings.archive,
                             color = MaterialTheme.colorScheme.error,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold

@@ -71,7 +71,7 @@ fun PortfolioPage() {
                 FooterSection()
             }
         }
-        ButtonFlags(Modifier.align(Alignment.TopStart).padding(16.dp))
+        ButtonFlags(Modifier.align(Alignment.BottomEnd).padding(16.dp))
         if (!isMobile && windowsSize.width > 800.dp) {
             DesktopMenu(
                 modifier = Modifier.align(Alignment.TopEnd),

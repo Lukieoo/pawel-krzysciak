@@ -2,6 +2,7 @@ package com.pawkrzysciak.portfolio.fakes
 
 import androidx.compose.ui.graphics.Color
 import com.pawkrzysciak.portfolio.section.projects.ProjectItem
+import com.pawkrzysciak.portfolio.translation.CurrentStrings
 import com.pawkrzysciak.portfolio.translation.Strings
 import portfolio.composeapp.generated.resources.Res
 import portfolio.composeapp.generated.resources.bm_0
@@ -82,7 +83,7 @@ fun sampleProjects(strings: Strings) = listOf(
     ),
     ProjectItem(
         id = "3",
-        title = "Drzewostan - szacunki brakarskie",
+        title = CurrentStrings.strings.drzewostan,
         description = strings.drzewostanDescription,
         previewImagesUrls = listOf(
             Res.drawable.tree_1,
@@ -99,7 +100,7 @@ fun sampleProjects(strings: Strings) = listOf(
     ),
     ProjectItem(
         id = "4",
-        title = "Spojrzyj - Soczewki kontaktowe",
+        title = CurrentStrings.strings.spojrzyj,
         description = strings.quizUpDescription,
         previewImagesUrls = listOf(
             Res.drawable.looked_2,
@@ -114,7 +115,7 @@ fun sampleProjects(strings: Strings) = listOf(
     ),
     ProjectItem(
         id = "5",
-        title = "Smoguś - Jakość powietrza ",
+        title = CurrentStrings.strings.smogus,
         description = strings.smogusDescription,
         previewImagesUrls = listOf(
             Res.drawable.smogus_2,
