@@ -4,7 +4,10 @@ import androidx.compose.material3.AssistChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.platform.LocalUriHandler
 
 @Composable
@@ -13,11 +16,14 @@ fun LinkButton(
     url: String
 ) {
     val uriHandler = LocalUriHandler.current
-    AssistChip(onClick = { uriHandler.openUri(url) }, label = {
-        Text(
-            text = label,
-            color = Color.Black,
-            style = MaterialTheme.typography.bodyMedium
-        )
-    })
+    AssistChip(
+        modifier = Modifier
+            .pointerHoverIcon(PointerIcon.Hand),
+        onClick = { uriHandler.openUri(url) }, label = {
+            Text(
+                text = label,
+                color = Color.Black,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        })
 }

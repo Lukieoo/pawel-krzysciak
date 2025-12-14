@@ -34,6 +34,7 @@ import com.pawkrzysciak.portfolio.common.rememberWindowSize
 import com.pawkrzysciak.portfolio.section.hero.components.BackgroundGrid
 import com.pawkrzysciak.portfolio.section.hero.components.FloatingTechWordsTypewriter
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
+import com.pawkrzysciak.portfolio.translation.CurrentStrings
 
 @Composable
 fun HeroSection(
@@ -76,7 +77,7 @@ private fun BoxScope.HeroMainSection() {
                     )
         ) {
             Text(
-                text = "Buduję aplikacje Android,\nktóre realnie wspierają cele biznesowe.",
+                text = CurrentStrings.strings.heroTitleSection,
                 style = MaterialTheme.typography.displayMedium.copy(
                     fontWeight = FontWeight.Bold,
                     lineHeight = 52.sp,
@@ -95,7 +96,7 @@ private fun BoxScope.HeroMainSection() {
                     )
         ) {
             Text(
-                text = "Stawiam na jakość kodu, testowalność i długoterminową stabilność projektu. Korzystam z Kotlina, Jetpack Compose, modularizacji i clean architecture.",
+                text = CurrentStrings.strings.heroDescSection,
                 style = MaterialTheme.typography.bodyLarge.copy(
                     color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.85f)
                 ),

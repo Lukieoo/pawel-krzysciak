@@ -26,6 +26,7 @@ import com.pawkrzysciak.portfolio.fakes.technologies
 import com.pawkrzysciak.portfolio.fakes.tools
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
 import com.pawkrzysciak.portfolio.theme.isMobile
+import com.pawkrzysciak.portfolio.translation.CurrentStrings
 import org.jetbrains.compose.resources.painterResource
 import portfolio.composeapp.generated.resources.Res
 import portfolio.composeapp.generated.resources.draw
@@ -45,18 +46,14 @@ fun TechnologiesAndToolsSection(modifier: Modifier) {
                 .padding(horizontal = GetLayoutPadding())
         ) {
             Text(
-                text = "Technologie i narzędzia",
+                text = CurrentStrings.strings.technologiesTitle,
                 style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.SemiBold)
             )
 
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Podczas pracy komercyjnej oraz realizując własne projekty "
-                        + "miałem okazję korzystać z różnych technologii, bibliotek i narzędzi "
-                        + "związanych z ekosystemem Androida oraz backendem. "
-                        + "\nPoniżej przedstawiam niektóre z technologie, programy i narzędzia, "
-                        + "z którymi miałem styczność.",
+                text = CurrentStrings.strings.technologiesDescription,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Justify
@@ -65,7 +62,7 @@ fun TechnologiesAndToolsSection(modifier: Modifier) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Technologie:",
+                text = CurrentStrings.strings.technologiesLabel,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
@@ -82,7 +79,7 @@ fun TechnologiesAndToolsSection(modifier: Modifier) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Narzędzia i programy:",
+                text = CurrentStrings.strings.toolsLabel,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
@@ -99,7 +96,7 @@ fun TechnologiesAndToolsSection(modifier: Modifier) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Hobbystycznie:",
+                text = CurrentStrings.strings.hobbiesLabel,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )

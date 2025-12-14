@@ -2,6 +2,7 @@ package com.pawkrzysciak.portfolio.fakes
 
 import androidx.compose.ui.graphics.Color
 import com.pawkrzysciak.portfolio.section.projects.ProjectItem
+import com.pawkrzysciak.portfolio.translation.Strings
 import portfolio.composeapp.generated.resources.Res
 import portfolio.composeapp.generated.resources.bm_0
 import portfolio.composeapp.generated.resources.bm_1
@@ -39,11 +40,11 @@ import portfolio.composeapp.generated.resources.tree_4
 import portfolio.composeapp.generated.resources.tree_app_icon
 
 
-val sampleProjects = listOf(
+fun sampleProjects(strings: Strings) = listOf(
     ProjectItem(
         id = "1",
         title = "NoteApp",
-        description = "Aplikacja Android do tworzenia inteligentnych notatek. Umożliwia tworzenie i organizowanie notatek tekstowych oraz graficznych, obsługę indywidualnych kont użytkowników, a także pracę w trybie offline. Zastosowane narzędzia sztucznej inteligencji wspierają użytkownika, m.in. poprzez automatyczną poprawę gramatyki. Projekt stworzony z wykorzystaniem natywnych technologii Android.",
+        description = strings.noteAppDescription,
         previewImagesUrls = listOf(
             Res.drawable.note_app_1,
             Res.drawable.note_app_2,
@@ -63,7 +64,7 @@ val sampleProjects = listOf(
     ProjectItem(
         id = "2",
         title = "QuizUp",
-        description = "Aplikacja do tworzenia i rozwiązywania quizów. Oferuje wiele trybów rozgrywki: prywatne quizy do samodzielnej nauki, rywalizację ze znajomymi oraz dostęp do quizów publicznych tworzonych przez społeczność. Dodatkowo wykorzystuje narzędzia sztucznej inteligencji do generowania nowych zestawów pytań, co zapewnia nieograniczone możliwości rozwoju wiedzy i zabawy.",
+        description = strings.quizUpDescription,
         previewImagesUrls = listOf(
             Res.drawable.quiz_app_1,
             Res.drawable.quiz_app_2,
@@ -82,7 +83,7 @@ val sampleProjects = listOf(
     ProjectItem(
         id = "3",
         title = "Drzewostan - szacunki brakarskie",
-        description = "Aplikacja do notowania liczby drzew z podziałem na klasy oraz średnice. Ułatwia pracę przy wykonywaniu szacunków brakarskich, umożliwia zapisywanie wyników oraz ich przesyłanie na inne urządzenia za pomocą wygenerowanego pliku PDF.",
+        description = strings.drzewostanDescription,
         previewImagesUrls = listOf(
             Res.drawable.tree_1,
             Res.drawable.tree_2,
@@ -99,7 +100,7 @@ val sampleProjects = listOf(
     ProjectItem(
         id = "4",
         title = "Spojrzyj - Soczewki kontaktowe",
-        description = "Aplikacja ułatwiająca zarządzanie terminami wymiany soczewek kontaktowych. Użytkownik wybiera typ soczewki oraz datę pierwszego założenia, a system automatycznie przypomina o konieczności ich wymiany we właściwym czasie. W aktualnej wersji dostępny jest również praktyczny widget, umożliwiający szybki podgląd informacji prosto z ekranu głównego.",
+        description = strings.quizUpDescription,
         previewImagesUrls = listOf(
             Res.drawable.looked_2,
             Res.drawable.looked_3,
@@ -114,7 +115,7 @@ val sampleProjects = listOf(
     ProjectItem(
         id = "5",
         title = "Smoguś - Jakość powietrza ",
-        description = "Aplikacja stworzona z myślą o zwiększeniu świadomości użytkowników na temat jakości powietrza, którym oddychają na co dzień. Dane pomiarowe pobierane są z oficjalnych stacji monitorujących GIOŚ, co zapewnia wysoką wiarygodność informacji. Użytkownik może przeglądać wartości zanieczyszczeń na interaktywnej mapie Polski oraz sprawdzać szczegółowe wyniki dla wybranych regionów.",
+        description = strings.smogusDescription,
         previewImagesUrls = listOf(
             Res.drawable.smogus_2,
             Res.drawable.smogus_1,
@@ -131,13 +132,12 @@ val sampleProjects = listOf(
         cropPadding = false
     ),
 )
-val verticalProjects = listOf(
+
+fun verticalProjects(strings: Strings) = listOf(
     ProjectItem(
         id = "1",
         title = "Bounce Master",
-        description = "Ta prosta i wciągająca gra zręcznościowa została stworzona przy użyciu silnika Godot oraz języka GDScript. Projekt powstał jako małe, niezależne doświadczenie programistyczne – idealne dla fanów gier arcade i krótkich wyzwań.\n" +
-                "\n" +
-                "Sterujesz piłką, utrzymujesz ją w grze i zdobywasz jak najwięcej punktów. Mechanika jest prosta, ale wynik zależy tylko od Twojej zręczności i refleksu!",
+        description = strings.bounceMasterDescription,
         previewImagesUrls = listOf(
             Res.drawable.bm_0,
             Res.drawable.bm_1,
@@ -173,6 +173,6 @@ val tools = listOf(
 )
 
 val hobbies = listOf(
-    "Godot Engine", "Blender", "Grafika wektorowa", "Tworzenie mini gier",
+    "Godot Engine", "Blender", "2D/3D graphics",
     "UI/UX", "Spring Boot"
 )

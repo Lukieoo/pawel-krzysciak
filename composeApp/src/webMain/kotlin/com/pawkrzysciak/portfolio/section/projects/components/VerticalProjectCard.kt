@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pawkrzysciak.portfolio.section.projects.ProjectItem
+import com.pawkrzysciak.portfolio.translation.CurrentStrings
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -77,7 +78,7 @@ fun VerticalProjectCard(project: ProjectItem) {
             if (project.githubUrl != null || project.externalUrl != null || project.playStoreUrl != null || project.youtubeUrl != null) {
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    text = "Zobacz więcej na:",
+                    text = CurrentStrings.strings.seeMore,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier

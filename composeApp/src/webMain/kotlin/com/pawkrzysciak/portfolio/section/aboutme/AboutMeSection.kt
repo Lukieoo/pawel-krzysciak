@@ -7,7 +7,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,9 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,13 +29,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.pawkrzysciak.portfolio.section.hero.components.HandwritingFont
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
+import com.pawkrzysciak.portfolio.translation.CurrentStrings
 
 @Composable
 fun AboutMeSection(modifier: Modifier) {
@@ -100,16 +94,14 @@ fun AboutMeSection(modifier: Modifier) {
 fun AboutMeTextColumn(modifier: Modifier) {
     Column(modifier = modifier.widthIn(max = 900.dp)) {
         Text(
-            text = "O mnie",
+            text = CurrentStrings.strings.aboutMe,
             style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.SemiBold)
         )
 
         Spacer(Modifier.height(16.dp))
 
         Text(
-            text = "Jestem inżynierem informatyki oraz programistą Androida z ponad 6 letnim doświadczeniem w tworzeniu nowoczesnych aplikacji mobilnych. Współpracowałem nad projektami dla różnych branż od systemów POS i aplikacji społecznościowych dla sprzedawców, po sektor ochrony zdrowia i e-commerce z których część była używana przez ponad milion użytkowników.\n\n" +
-                    "Swoje aplikacje głównie tworzę i rozwijam w Kotlinie dbając o dobre praktyki. Łączę podejście business-first z dbałością o jakość kodu, czytelność i skalowalność projektu. Na co dzień pracuję w metodykach Agile.\n\n" +
-                    "Po godzinach rozwijam własne aplikacje, tworzę UI/UX i eksperymentuję z grafiką. Dodatkowo piszę gry w silniku Godot, co pozwala mi rozwijać kreatywność i umiejętności projektowe.",
+            text = CurrentStrings.strings.aboutMeDesc,
             style = MaterialTheme.typography.bodyLarge.copy(
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.85f)
             ),
@@ -128,11 +120,11 @@ fun ExperienceColumn(modifier: Modifier, animatedExperience: Int) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "+ $animatedExperience lat",
+            text = "+ $animatedExperience " + CurrentStrings.strings.years,
             style = MaterialTheme.typography.displayLarge.copy(fontWeight = FontWeight.Bold)
         )
         Text(
-            text = "Doświadczenia komercyjnego",
+            text = CurrentStrings.strings.commercialExperience,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyLarge
         )

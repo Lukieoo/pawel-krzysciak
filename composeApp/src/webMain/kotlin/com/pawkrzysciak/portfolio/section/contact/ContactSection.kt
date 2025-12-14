@@ -42,6 +42,7 @@ import com.pawkrzysciak.portfolio.section.hero.components.BackgroundGrid
 import com.pawkrzysciak.portfolio.section.hero.components.FloatingTechWordsTypewriter
 import com.pawkrzysciak.portfolio.section.hero.components.HandwritingFont
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
+import com.pawkrzysciak.portfolio.translation.CurrentStrings
 import kotlinx.browser.window
 
 @Composable
@@ -105,7 +106,7 @@ private fun ContactBody() {
                 )
 
                 Text(
-                    text = "Polska · Kraków · Zdalnie",
+                    text = CurrentStrings.strings.place,
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.LightGray
                 )
@@ -124,7 +125,7 @@ private fun ContactBody() {
                 Spacer(Modifier.height(16.dp))
 
                 Text(
-                    text = "Znajdź mnie tutaj:",
+                    text = CurrentStrings.strings.findMe,
                     style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold)
                 )
 

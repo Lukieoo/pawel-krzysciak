@@ -1,27 +1,28 @@
 package com.pawkrzysciak.portfolio.fakes
 
 import com.pawkrzysciak.portfolio.section.experience.ExperienceData
+import com.pawkrzysciak.portfolio.translation.Strings
 
-val experiences = listOf(
+fun experiences(strings: Strings) = listOf(
     ExperienceData(
         company = "Silky Coders",
-        role = "Android Developer",
-        period = "Maj 2022 — obecnie",
-        location = "Gdańsk, Polska",
-        description = "Współtworzę nowoczesne rozwiązania e-commerce dla platformy mobilnej."
+        role = strings.silkyRole,
+        period = strings.silkyPeriod,
+        location = strings.silkyLocation,
+        description = strings.silkyDescription
     ),
     ExperienceData(
         company = "POSbistro",
-        role = "Android Developer",
-        period = "Gru 2021 — Kwi 2022\nJunior Android Developer: Lut 2021 — Gru 2021",
-        location = "Kraków, Polska",
-        description = "Tworzyłem i rozwijałem aplikacje mobilne dla branży gastronomicznej.\nOdpowiadałem za rozwój i utrzymanie systemu POS."
+        role = strings.posbistroRole,
+        period = strings.posbistroPeriod,
+        location = strings.posbistroLocation,
+        description = strings.posbistroDescription
     ),
     ExperienceData(
         company = "Lasoft",
-        role = "Android Developer",
-        period = "Lis 2019 — Sty 2021",
-        location = "Kraków, Polska",
-        description = "Tworzyłem oprogramowanie na platformę Android.\nWykorzystywałem także rozwiązania cross-platformowe z użyciem frameworka Flutter."
+        role = strings.lasoftRole,
+        period = strings.lasoftPeriod,
+        location = strings.lasoftLocation,
+        description = strings.lasoftDescription
     )
 )

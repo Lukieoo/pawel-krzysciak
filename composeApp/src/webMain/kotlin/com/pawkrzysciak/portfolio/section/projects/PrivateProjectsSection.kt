@@ -36,14 +36,23 @@ import com.pawkrzysciak.portfolio.section.projects.components.BaseProjectCard
 import com.pawkrzysciak.portfolio.section.projects.components.ProjectCard
 import com.pawkrzysciak.portfolio.section.projects.components.VerticalProjectCard
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
+import com.pawkrzysciak.portfolio.translation.CurrentStrings
 import kotlinx.coroutines.launch
 
 
 @Composable
 fun PrivateProjectsSection(
     modifier: Modifier,
-    itemsHorizontal: List<ProjectItem> = remember { sampleProjects },
-    itemsVertical: List<ProjectItem> = remember { verticalProjects },
+    itemsHorizontal: List<ProjectItem> = remember(CurrentStrings.strings) {
+        sampleProjects(
+            CurrentStrings.strings
+        )
+    },
+    itemsVertical: List<ProjectItem> = remember(CurrentStrings.strings) {
+        verticalProjects(
+            CurrentStrings.strings
+        )
+    },
 ) {
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
@@ -52,7 +61,7 @@ fun PrivateProjectsSection(
             .background(Color.White),
     ) {
         Text(
-            text = "Prywatne projekty",
+            text = CurrentStrings.strings.privateProject,
             style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.SemiBold),
             modifier = Modifier.padding(horizontal = GetLayoutPadding(), vertical = 40.dp)
         )
@@ -104,7 +113,7 @@ fun PrivateProjectsSection(
                         ProjectCard(itemsHorizontal[index])
                     }
                     items(itemsVertical.count()) { index ->
-                        VerticalProjectCard(verticalProjects[index])
+                        VerticalProjectCard(itemsVertical[index])
                     }
                 }
                 item {

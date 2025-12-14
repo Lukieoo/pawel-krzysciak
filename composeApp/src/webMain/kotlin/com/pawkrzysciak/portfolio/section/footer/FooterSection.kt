@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pawkrzysciak.portfolio.translation.CurrentStrings.strings
 
 @Composable
 fun FooterSection() {
@@ -26,13 +27,13 @@ fun FooterSection() {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "© 2025 Paweł Krzyściak – Wszelkie prawa zastrzeżone",
+            text = strings.footerCopyright,
             color = Color.White,
             fontSize = 14.sp
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "Strona stworzona z użyciem Jetpack Compose dla Kotlin Multiplatform",
+            text = strings.footerTechStack,
             color = Color.White.copy(alpha = 0.85f),
             fontSize = 12.sp
         )

@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -30,13 +31,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.pawkrzysciak.portfolio.fakes.experiences
-import com.pawkrzysciak.portfolio.section.timeline.TornSide
-import com.pawkrzysciak.portfolio.section.timeline.tornBorder
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
+import com.pawkrzysciak.portfolio.translation.CurrentStrings
 
 
 @Composable
-fun ExperienceSection(modifier: Modifier) {
+fun ExperienceSection(
+    modifier: Modifier,
+    experiencesList: List<ExperienceData> = remember(CurrentStrings.strings) {
+        experiences(
+            CurrentStrings.strings
+        )
+    }
+) {
     var visible by rememberSaveable { mutableStateOf(false) }
     LaunchedEffect(Unit) { visible = true }
     AnimatedVisibility(
@@ -51,14 +58,15 @@ fun ExperienceSection(modifier: Modifier) {
                 .padding(horizontal = GetLayoutPadding(), vertical = 20.dp),
         ) {
             Text(
-                text = "Doświadczenie", style = MaterialTheme.typography.headlineMedium.copy(
+                text = CurrentStrings.strings.experience,
+                style = MaterialTheme.typography.headlineMedium.copy(
                     fontWeight = FontWeight.SemiBold
                 )
             )
 
             Spacer(Modifier.height(32.dp))
 
-            experiences.forEach { exp ->
+            experiencesList.forEach { exp ->
                 ExperienceItemWithCanvas(
                     experience = exp,
                 )

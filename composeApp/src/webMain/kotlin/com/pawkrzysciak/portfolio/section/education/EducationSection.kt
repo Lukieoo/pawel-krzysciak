@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -30,9 +31,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.pawkrzysciak.portfolio.fakes.educationList
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
+import com.pawkrzysciak.portfolio.translation.CurrentStrings
 
 @Composable
-fun EducationSection(modifier: Modifier) {
+fun EducationSection(
+    modifier: Modifier,
+    educationData: List<EducationData> = remember(CurrentStrings.strings) {
+        educationList(
+            CurrentStrings.strings
+        )
+    }
+) {
     var visible by rememberSaveable { mutableStateOf(false) }
     LaunchedEffect(Unit) { visible = true }
     AnimatedVisibility(
@@ -48,7 +57,7 @@ fun EducationSection(modifier: Modifier) {
             modifier = Modifier.padding(horizontal = GetLayoutPadding(), vertical = 20.dp),
         ) {
             Text(
-                text = "Edukacja",
+                text = CurrentStrings.strings.education,
                 style = MaterialTheme.typography.headlineMedium.copy(
                     fontWeight = FontWeight.SemiBold
                 )
@@ -56,7 +65,7 @@ fun EducationSection(modifier: Modifier) {
 
             Spacer(Modifier.height(32.dp))
 
-            educationList.forEach { edu ->
+            educationData.forEach { edu ->
                 EducationItem(
                     education = edu,
                 )
