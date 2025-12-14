@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.pawkrzysciak.portfolio.common.rememberWindowSize
 import com.pawkrzysciak.portfolio.extensions.parallaxLayoutModifier
 import com.pawkrzysciak.portfolio.section.aboutme.AboutMeSection
+import com.pawkrzysciak.portfolio.section.contact.ContactSection
 import com.pawkrzysciak.portfolio.section.footer.FooterSection
 import com.pawkrzysciak.portfolio.section.hero.HeroSection
 import com.pawkrzysciak.portfolio.section.projects.PrivateProjectsSection
@@ -80,7 +81,10 @@ fun PortfolioPage() {
             item("Technologie") {
                 TechnologiesAndToolsSection(modifier = Modifier)
             }
-            item("Footer") {
+            item("Kontakt") {
+                ContactSection(modifier = Modifier)
+            }
+            item {
                 FooterSection()
             }
         }
@@ -101,7 +105,7 @@ fun DesktopMenu(
     coroutineScope: CoroutineScope,
     modifier: Modifier
 ) {
-    val sections = listOf("Home", "O mnie", "Oś czasu", "Projekty", "Technologie")
+    val sections = listOf("Home", "O mnie", "Oś czasu", "Projekty", "Technologie", "Kontakt")
     val windowsSize = rememberWindowSize()
 
     val currentSection by rememberSaveable(windowsSize, scrollState) {

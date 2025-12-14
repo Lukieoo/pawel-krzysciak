@@ -25,6 +25,7 @@ import com.pawkrzysciak.portfolio.fakes.hobbies
 import com.pawkrzysciak.portfolio.fakes.technologies
 import com.pawkrzysciak.portfolio.fakes.tools
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
+import com.pawkrzysciak.portfolio.theme.isMobile
 import org.jetbrains.compose.resources.painterResource
 import portfolio.composeapp.generated.resources.Res
 import portfolio.composeapp.generated.resources.draw
@@ -114,10 +115,12 @@ fun TechnologiesAndToolsSection(modifier: Modifier) {
 
             Spacer(modifier = Modifier.height(16.dp))
         }
-        Image(
-            painter = painterResource(Res.drawable.draw),
-            contentDescription = null,
-            modifier = Modifier.weight(1f).size(600.dp),
-        )
+        if (isMobile.not()) {
+            Image(
+                painter = painterResource(Res.drawable.draw),
+                contentDescription = null,
+                modifier = Modifier.weight(1f).size(600.dp),
+            )
+        }
     }
 }
