@@ -115,53 +115,6 @@ fun AboutMeTextColumn(modifier: Modifier) {
             ),
             textAlign = TextAlign.Justify
         )
-
-        Spacer(Modifier.height(16.dp))
-
-        Text(
-            text = "Znajdź mnie tutaj:",
-            style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold)
-        )
-
-        Spacer(Modifier.height(16.dp))
-
-        SocialButtonsRow()
-    }
-}
-
-@Composable
-fun SocialButtonsRow() {
-    val uriHandler = LocalUriHandler.current
-    FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        SocialButton("GitHub", "https://github.com/Lukieoo", uriHandler)
-        SocialButton(
-            "LinkedIn",
-            "https://www.linkedin.com/in/paweł-krzyściak-2691a8186",
-            uriHandler
-        )
-        SocialButton("Itch.io", "https://lukieoo.itch.io/", uriHandler)
-    }
-}
-
-@Composable
-fun SocialButton(text: String, url: String, uriHandler: UriHandler) {
-    Button(
-        onClick = { uriHandler.openUri(url) },
-        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-        shape = RoundedCornerShape(12.dp),
-        modifier = Modifier
-            .height(48.dp)
-            .border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
-    ) {
-        Text(
-            text = text,
-            color = Color.Black,
-            fontFamily = HandwritingFont(),
-            style = MaterialTheme.typography.displaySmall
-        )
     }
 }
 
