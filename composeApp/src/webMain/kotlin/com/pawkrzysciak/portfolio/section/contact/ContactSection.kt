@@ -162,7 +162,7 @@ private fun SocialButton(text: String, url: String, uriHandler: UriHandler) {
         colors = ButtonDefaults.buttonColors(containerColor = Color.White),
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
-            .height(48.dp)
+            .height(48.dp).pointerHoverIcon(PointerIcon.Hand)
             .border(1.dp, Color.Gray, RoundedCornerShape(12.dp))
     ) {
         Text(
