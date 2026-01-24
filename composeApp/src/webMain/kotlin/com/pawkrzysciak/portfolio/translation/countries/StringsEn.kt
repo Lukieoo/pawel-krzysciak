@@ -51,7 +51,7 @@ object StringsEn : Strings {
 
     // Silky Coders
     override val silkyRole = "Android Developer"
-    override val silkyPeriod = "May 2022 — Present"
+    override val silkyPeriod = "Senior: Jan 2026 — Present\nMid:May 2022 — Jan 2026"
     override val silkyLocation = "Gdańsk, Poland"
     override val silkyDescription =
         "Co-developing modern e-commerce solutions for a mobile platform."

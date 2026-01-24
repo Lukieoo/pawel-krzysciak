@@ -101,7 +101,7 @@ fun sampleProjects(strings: Strings) = listOf(
     ProjectItem(
         id = "4",
         title = CurrentStrings.strings.spojrzyj,
-        description = strings.quizUpDescription,
+        description = strings.spojrzyjDescription,
         previewImagesUrls = listOf(
             Res.drawable.looked_2,
             Res.drawable.looked_3,
