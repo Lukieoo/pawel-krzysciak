@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Paweł Krzyściak – Android Developer</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Portfolio of Paweł Krzyściak – Senior Android Developer with 6+ years of experience. Kotlin, Jetpack Compose, Kotlin Multiplatform.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Paweł Krzyściak – Senior Android Developer">
+    <meta property="og:description" content="Senior Android Developer with 6+ years of experience. Kotlin, Jetpack Compose, KMP. Apps used by 1M+ users.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Paweł Krzyściak – Senior Android Developer">
+    <meta name="twitter:description" content="Senior Android Developer. Kotlin, Jetpack Compose, KMP. 6+ years of experience.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link type="text/css" rel="stylesheet" href="styles.css">
     <script type="application/javascript" src="composeApp.js"></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            var observer = new MutationObserver(function () {
+                if (document.querySelector('canvas')) {
+                    observer.disconnect();
+                    var loader = document.getElementById('loader');
+                    if (loader) {
+                        loader.style.opacity = '0';
+                        setTimeout(function () { loader.style.display = 'none'; }, 450);
+                    }
+                }
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+    </script>
 </head>
 <body>
+    <div id="loader">
+        <div class="loader-spinner"></div>
+        <p class="loader-label">Loading</p>
+    </div>
 </body>
 </html>
