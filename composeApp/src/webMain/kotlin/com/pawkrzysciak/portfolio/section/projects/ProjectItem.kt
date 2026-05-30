@@ -9,6 +9,7 @@ data class ProjectItem(
     val description: String,
     val previewImagesUrls: List<DrawableResource>,
     val iconUrl: DrawableResource,
+    val emoji: String = "📱",
     val githubUrl: String? = null,
     val playStoreUrl: String? = null,
     val externalUrl: String? = null,

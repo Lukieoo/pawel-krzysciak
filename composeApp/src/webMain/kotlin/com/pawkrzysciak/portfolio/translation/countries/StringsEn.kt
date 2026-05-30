@@ -51,7 +51,7 @@ object StringsEn : Strings {
 
     // Silky Coders
     override val silkyRole = "Android Developer"
-    override val silkyPeriod = "Senior: Jan 2026 — Present\nMid:May 2022 — Jan 2026"
+    override val silkyPeriod = "Senior: Jan 2026 — Present\nMid: May 2022 — Jan 2026"
     override val silkyLocation = "Gdańsk, Poland"
     override val silkyDescription =
         "Co-developing modern e-commerce solutions for a mobile platform."
@@ -109,7 +109,7 @@ object StringsEn : Strings {
     override val education = "Education"
 
     override val footerCopyright =
-        "© 2025 Paweł Krzyściak – All rights reserved"
+        "© 2026 Paweł Krzyściak – All rights reserved"
 
     override val footerTechStack =
         "Website built using Jetpack Compose for Kotlin Multiplatform"
@@ -131,4 +131,10 @@ object StringsEn : Strings {
     override val drzewostan = "Forest Inventory – Timber Estimation"
     override val spojrzyj = "Spojrzyj – Contact Lens Tracker"
     override val smogus = "Smoguś – Air Quality Monitor"
+
+    override val statExperienceLabel = "years of experience"
+    override val statUsersLabel = "app users reached"
+    override val statCompaniesLabel = "tech companies"
+    override val downloadCv = "Download CV"
+    override val contactSubtitle = "Always open to new opportunities and interesting projects"
 }

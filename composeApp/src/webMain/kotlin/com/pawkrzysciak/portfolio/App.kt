@@ -7,12 +7,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.pawkrzysciak.portfolio.theme.AppColors
+import com.pawkrzysciak.portfolio.theme.KotlinDivider
 import com.pawkrzysciak.portfolio.common.rememberWindowSize
 import com.pawkrzysciak.portfolio.extensions.parallaxLayoutModifier
 import com.pawkrzysciak.portfolio.section.aboutme.AboutMeSection
@@ -22,6 +25,7 @@ import com.pawkrzysciak.portfolio.section.hero.HeroSection
 import com.pawkrzysciak.portfolio.section.projects.PrivateProjectsSection
 import com.pawkrzysciak.portfolio.section.start.ButtonFlags
 import com.pawkrzysciak.portfolio.section.start.DesktopMenu
+import com.pawkrzysciak.portfolio.section.start.MobileMenu
 import com.pawkrzysciak.portfolio.section.technologies.TechnologiesAndToolsSection
 import com.pawkrzysciak.portfolio.section.timeline.TimelineSection
 import com.pawkrzysciak.portfolio.theme.isMobile
@@ -30,7 +34,12 @@ import kotlin.js.ExperimentalWasmJsInterop
 
 @Composable
 fun App() {
-    MaterialTheme {
+    MaterialTheme(
+        colorScheme = lightColorScheme(
+            primary = AppColors.KotlinPurple,
+            secondary = AppColors.AndroidGreen
+        )
+    ) {
         PortfolioPage()
     }
 }
@@ -52,18 +61,23 @@ fun PortfolioPage() {
             item(CurrentStrings.strings.navHome) {
                 HeroSection(modifier = Modifier.parallaxLayoutModifier(listState, 2))
             }
+            item { KotlinDivider() }
             item(CurrentStrings.strings.navAboutMe) {
                 AboutMeSection(modifier = Modifier)
             }
+            item { KotlinDivider() }
             item(CurrentStrings.strings.navTimeline) {
                 TimelineSection(modifier = Modifier)
             }
+            item { KotlinDivider() }
             item(CurrentStrings.strings.navProjects) {
                 PrivateProjectsSection(modifier = Modifier)
             }
+            item { KotlinDivider() }
             item(CurrentStrings.strings.navTechnologies) {
                 TechnologiesAndToolsSection(modifier = Modifier)
             }
+            item { KotlinDivider() }
             item(CurrentStrings.strings.navContact) {
                 ContactSection(modifier = Modifier)
             }
@@ -75,6 +89,11 @@ fun PortfolioPage() {
         if (!isMobile && windowsSize.width > 800.dp) {
             DesktopMenu(
                 modifier = Modifier.align(Alignment.TopEnd),
+                scrollState = listState,
+                coroutineScope = coroutineScope
+            )
+        } else {
+            MobileMenu(
                 scrollState = listState,
                 coroutineScope = coroutineScope
             )

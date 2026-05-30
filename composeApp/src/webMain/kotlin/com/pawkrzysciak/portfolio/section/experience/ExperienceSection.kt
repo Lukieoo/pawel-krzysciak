@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,7 +32,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.pawkrzysciak.portfolio.fakes.experiences
+import com.pawkrzysciak.portfolio.theme.AppColors
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
+import com.pawkrzysciak.portfolio.theme.SectionAccentBar
 import com.pawkrzysciak.portfolio.translation.CurrentStrings
 
 
@@ -63,6 +66,8 @@ fun ExperienceSection(
                     fontWeight = FontWeight.SemiBold
                 )
             )
+            Spacer(Modifier.height(6.dp))
+            SectionAccentBar()
 
             Spacer(Modifier.height(32.dp))
 
@@ -83,16 +88,20 @@ private fun ExperienceItemWithCanvas(experience: ExperienceData) {
             horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.width(40.dp)
         ) {
             Box(
-                modifier = Modifier.size(12.dp).border(
-                    width = 2.dp, color = Color.Gray, shape = CircleShape
-                )
+                modifier = Modifier
+                    .size(14.dp)
+                    .background(AppColors.AndroidGreen.copy(alpha = 0.2f), CircleShape)
+                    .border(2.dp, AppColors.AndroidGreen, CircleShape)
             )
         }
         Spacer(Modifier.width(16.dp))
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(
                 text = experience.company,
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    color = AppColors.KotlinPurple
+                )
             )
 
             Text(

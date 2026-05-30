@@ -76,4 +76,9 @@ interface Strings {
     val spojrzyj: String
     val smogus: String
 
+    val statExperienceLabel: String
+    val statUsersLabel: String
+    val statCompaniesLabel: String
+    val downloadCv: String
+    val contactSubtitle: String
 }

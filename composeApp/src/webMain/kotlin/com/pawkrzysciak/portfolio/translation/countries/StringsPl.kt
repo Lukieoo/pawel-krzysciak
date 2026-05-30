@@ -79,7 +79,7 @@ object StringsPl : Strings {
     override val place: String = "Polska · Kraków · Zdalnie"
     override val education: String = "Edukacja"
     override val footerCopyright =
-        "© 2025 Paweł Krzyściak – Wszelkie prawa zastrzeżone"
+        "© 2026 Paweł Krzyściak – Wszelkie prawa zastrzeżone"
 
     override val footerTechStack =
         "Strona stworzona z użyciem Jetpack Compose dla Kotlin Multiplatform"
@@ -100,4 +100,10 @@ object StringsPl : Strings {
     override val drzewostan = "Drzewostan - szacunki brakarskie"
     override val spojrzyj = "Spojrzyj - Soczewki kontaktowe"
     override val smogus = "Smoguś - Jakość powietrza "
+
+    override val statExperienceLabel = "lat doświadczenia"
+    override val statUsersLabel = "użytkowników aplikacji"
+    override val statCompaniesLabel = "firmy komercyjne"
+    override val downloadCv = "Pobierz CV"
+    override val contactSubtitle = "Zawsze otwarty na nowe możliwości i ciekawe projekty"
 }

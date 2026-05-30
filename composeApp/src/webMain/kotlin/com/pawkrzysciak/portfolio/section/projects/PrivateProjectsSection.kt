@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.pawkrzysciak.portfolio.config.SHOW_BASE_CARD_VIEW_ITEM_ONLY
 import com.pawkrzysciak.portfolio.fakes.sampleProjects
 import com.pawkrzysciak.portfolio.fakes.verticalProjects
+import com.pawkrzysciak.portfolio.theme.SectionAccentBar
 import com.pawkrzysciak.portfolio.section.projects.components.BaseProjectCard
 import com.pawkrzysciak.portfolio.section.projects.components.ProjectCard
 import com.pawkrzysciak.portfolio.section.projects.components.VerticalProjectCard
@@ -63,8 +64,10 @@ fun PrivateProjectsSection(
         Text(
             text = CurrentStrings.strings.privateProject,
             style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.SemiBold),
-            modifier = Modifier.padding(horizontal = GetLayoutPadding(), vertical = 40.dp)
+            modifier = Modifier.padding(start = GetLayoutPadding(), end = GetLayoutPadding(), top = 40.dp, bottom = 6.dp)
         )
+        SectionAccentBar(modifier = Modifier.padding(start = GetLayoutPadding()))
+        Spacer(modifier = Modifier.height(24.dp))
         Box(
             modifier = Modifier.fillMaxWidth()
                 .height(if (SHOW_BASE_CARD_VIEW_ITEM_ONLY) 450.dp else 550.dp)

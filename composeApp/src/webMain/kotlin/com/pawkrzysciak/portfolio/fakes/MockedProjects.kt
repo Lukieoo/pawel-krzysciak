@@ -46,6 +46,7 @@ fun sampleProjects(strings: Strings) = listOf(
         id = "1",
         title = "NoteApp",
         description = strings.noteAppDescription,
+        emoji = "NA",
         previewImagesUrls = listOf(
             Res.drawable.note_app_1,
             Res.drawable.note_app_2,
@@ -66,6 +67,7 @@ fun sampleProjects(strings: Strings) = listOf(
         id = "2",
         title = "QuizUp",
         description = strings.quizUpDescription,
+        emoji = "QU",
         previewImagesUrls = listOf(
             Res.drawable.quiz_app_1,
             Res.drawable.quiz_app_2,
@@ -85,6 +87,7 @@ fun sampleProjects(strings: Strings) = listOf(
         id = "3",
         title = CurrentStrings.strings.drzewostan,
         description = strings.drzewostanDescription,
+        emoji = "DZ",
         previewImagesUrls = listOf(
             Res.drawable.tree_1,
             Res.drawable.tree_2,
@@ -102,6 +105,7 @@ fun sampleProjects(strings: Strings) = listOf(
         id = "4",
         title = CurrentStrings.strings.spojrzyj,
         description = strings.spojrzyjDescription,
+        emoji = "SP",
         previewImagesUrls = listOf(
             Res.drawable.looked_2,
             Res.drawable.looked_3,
@@ -117,6 +121,7 @@ fun sampleProjects(strings: Strings) = listOf(
         id = "5",
         title = CurrentStrings.strings.smogus,
         description = strings.smogusDescription,
+        emoji = "SM",
         previewImagesUrls = listOf(
             Res.drawable.smogus_2,
             Res.drawable.smogus_1,
@@ -139,6 +144,7 @@ fun verticalProjects(strings: Strings) = listOf(
         id = "1",
         title = "Drzewostan 2.0",
         description = strings.drzewostan2Description,
+        emoji = "D2",
         previewImagesUrls = listOf(
             Res.drawable.tree_1,
             Res.drawable.tree_2,
@@ -157,6 +163,7 @@ fun verticalProjects(strings: Strings) = listOf(
         id = "2",
         title = "Bounce Master",
         description = strings.bounceMasterDescription,
+        emoji = "BM",
         previewImagesUrls = listOf(
             Res.drawable.bm_0,
             Res.drawable.bm_1,

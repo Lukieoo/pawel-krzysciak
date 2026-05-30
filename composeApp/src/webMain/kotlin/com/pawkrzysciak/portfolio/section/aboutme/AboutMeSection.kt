@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +31,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.pawkrzysciak.portfolio.theme.AppColors
 import com.pawkrzysciak.portfolio.theme.GetLayoutPadding
+import com.pawkrzysciak.portfolio.theme.SectionAccentBar
 import com.pawkrzysciak.portfolio.translation.CurrentStrings
 
 @Composable
@@ -48,16 +49,10 @@ fun AboutMeSection(modifier: Modifier) {
     var visible by rememberSaveable { mutableStateOf(false) }
     LaunchedEffect(Unit) { visible = true }
 
-    Column {
-        HorizontalDivider(
-            modifier = Modifier.fillMaxWidth(),
-            color = Color.LightGray,
-            thickness = 1.dp
-        )
-        Box(
+    Box(
             modifier = modifier
                 .fillMaxWidth()
-                .background(Color.White)
+                .background(AppColors.SectionTint)
                 .padding(horizontal = GetLayoutPadding(), vertical = 120.dp),
             contentAlignment = Alignment.CenterStart
         ) {
@@ -87,7 +82,6 @@ fun AboutMeSection(modifier: Modifier) {
                 )
             }
         }
-    }
 }
 
 @Composable
@@ -97,6 +91,8 @@ fun AboutMeTextColumn(modifier: Modifier) {
             text = CurrentStrings.strings.aboutMe,
             style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.SemiBold)
         )
+        Spacer(Modifier.height(6.dp))
+        SectionAccentBar()
 
         Spacer(Modifier.height(16.dp))
 
@@ -121,7 +117,10 @@ fun ExperienceColumn(modifier: Modifier, animatedExperience: Int) {
     ) {
         Text(
             text = "+ $animatedExperience " + CurrentStrings.strings.years,
-            style = MaterialTheme.typography.displayLarge.copy(fontWeight = FontWeight.Bold)
+            style = MaterialTheme.typography.displayLarge.copy(
+                fontWeight = FontWeight.Bold,
+                color = AppColors.KotlinPurple
+            )
         )
         Text(
             text = CurrentStrings.strings.commercialExperience,
