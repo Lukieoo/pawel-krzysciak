@@ -50,6 +50,8 @@ interface Strings {
     val spojrzyjDescription: String
     val smogusDescription: String
 
+    val drzewostan2Description: String
+
     // Vertical projects
     val bounceMasterDescription: String
     val seeMore: String
@@ -68,6 +70,7 @@ interface Strings {
     val toolsLabel: String
     val hobbiesLabel: String
     val archive: String
+    val new: String
 
     val drzewostan: String
     val spojrzyj: String

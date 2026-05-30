@@ -94,6 +94,9 @@ object StringsEn : Strings {
         "An application designed to increase awareness of air quality. Measurement data is sourced from official GIOŚ monitoring stations, " +
                 "ensuring high reliability. Users can browse pollution levels on an interactive map of Poland and analyze detailed regional data."
 
+    override val drzewostan2Description =
+        "Refreshed version 2.0 of the app for recording tree counts by class and diameter. New modern interface, improved features, and PDF export functionality for sharing results."
+
     override val bounceMasterDescription =
         "A simple and engaging arcade game created using the Godot engine and GDScript. " +
                 "The project was built as a small, independent development experience — perfect for fans of arcade games and short challenges. " +
@@ -123,6 +126,7 @@ object StringsEn : Strings {
     override val toolsLabel = "Tools & software:"
     override val hobbiesLabel = "Hobby:"
     override val archive = "Archived"
+    override val new = "NEW"
 
     override val drzewostan = "Forest Inventory – Timber Estimation"
     override val spojrzyj = "Spojrzyj – Contact Lens Tracker"

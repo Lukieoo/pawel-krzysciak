@@ -58,8 +58,16 @@ fun BaseProjectCard(project: ProjectItem) {
                     )
                     if (project.isArchived) {
                         Text(
-                            text = "ARCHIWALNA",
+                            text = CurrentStrings.strings.archive,
                             color = MaterialTheme.colorScheme.error,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                    if (project.isNew) {
+                        Text(
+                            text = CurrentStrings.strings.new,
+                            color = MaterialTheme.colorScheme.primary,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold
                         )
@@ -92,7 +100,7 @@ fun BaseProjectCard(project: ProjectItem) {
                     LinkButton(label = "Google Play", it)
                 }
                 project.externalUrl?.let {
-                    LinkButton(label = "itch.io", it)
+                    LinkButton(label = project.externalUrlLabel, it)
                 }
                 project.githubUrl?.let {
                     LinkButton(label = "Github", it)

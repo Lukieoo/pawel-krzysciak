@@ -104,16 +104,16 @@ fun PrivateProjectsSection(
                 }
             ) {
                 if (SHOW_BASE_CARD_VIEW_ITEM_ONLY) {
-                    val baseItems = itemsHorizontal + itemsVertical
+                    val baseItems = itemsVertical + itemsHorizontal
                     items(baseItems.count()) { index ->
                         BaseProjectCard(baseItems[index])
                     }
                 } else {
-                    items(itemsHorizontal.count()) { index ->
-                        ProjectCard(itemsHorizontal[index])
-                    }
                     items(itemsVertical.count()) { index ->
                         VerticalProjectCard(itemsVertical[index])
+                    }
+                    items(itemsHorizontal.count()) { index ->
+                        ProjectCard(itemsHorizontal[index])
                     }
                 }
                 item {

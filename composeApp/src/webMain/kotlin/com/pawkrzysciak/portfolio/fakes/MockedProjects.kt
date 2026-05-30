@@ -137,6 +137,24 @@ fun sampleProjects(strings: Strings) = listOf(
 fun verticalProjects(strings: Strings) = listOf(
     ProjectItem(
         id = "1",
+        title = "Drzewostan 2.0",
+        description = strings.drzewostan2Description,
+        previewImagesUrls = listOf(
+            Res.drawable.tree_1,
+            Res.drawable.tree_2,
+            Res.drawable.tree_3,
+            Res.drawable.tree_4,
+        ),
+        iconUrl = Res.drawable.tree_app_icon,
+        githubUrl = null,
+        playStoreUrl = "https://play.google.com/store/apps/details?id=com.anioncode.drzewostan",
+        externalUrl = "https://lukieoo.github.io/drzewostan-io/",
+        externalUrlLabel = "Website",
+        isNew = true,
+        backgroundColor = Color(0xFF048577)
+    ),
+    ProjectItem(
+        id = "2",
         title = "Bounce Master",
         description = strings.bounceMasterDescription,
         previewImagesUrls = listOf(
@@ -148,6 +166,7 @@ fun verticalProjects(strings: Strings) = listOf(
         githubUrl = null,
         playStoreUrl = "https://play.google.com/store/apps/details?id=com.anioncode.bouncemaster",
         externalUrl = "https://lukieoo.itch.io/bounce-master",
+        externalUrlLabel = "itch.io",
         backgroundColor = Color.Transparent
     ),
 )

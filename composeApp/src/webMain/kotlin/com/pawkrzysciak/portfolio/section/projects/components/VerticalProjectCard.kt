@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -70,6 +71,14 @@ fun VerticalProjectCard(project: ProjectItem) {
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold
                     )
+                    if (project.isNew) {
+                        Text(
+                            text = CurrentStrings.strings.new,
+                            color = MaterialTheme.colorScheme.primary,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
                 }
             }
 
@@ -92,7 +101,7 @@ fun VerticalProjectCard(project: ProjectItem) {
                 }
                 project.externalUrl?.let {
                     Spacer(Modifier.width(8.dp))
-                    LinkButton(label = "itch.io", it)
+                    LinkButton(label = project.externalUrlLabel, it)
                 }
             }
         }

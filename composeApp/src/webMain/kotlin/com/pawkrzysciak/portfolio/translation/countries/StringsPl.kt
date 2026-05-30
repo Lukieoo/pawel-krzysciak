@@ -68,6 +68,9 @@ object StringsPl : Strings {
         "Aplikacja ułatwiająca zarządzanie terminami wymiany soczewek kontaktowych. Użytkownik wybiera typ soczewki oraz datę pierwszego założenia, a system automatycznie przypomina o konieczności ich wymiany we właściwym czasie. Dostępny jest również praktyczny widget."
     override val smogusDescription =
         "Aplikacja zwiększająca świadomość użytkowników na temat jakości powietrza. Dane pomiarowe pochodzą z oficjalnych stacji GIOŚ. Umożliwia przeglądanie zanieczyszczeń na interaktywnej mapie Polski oraz analizę szczegółowych danych regionalnych."
+    override val drzewostan2Description =
+        "Odświeżona wersja 2.0 aplikacji do notowania liczby drzew z podziałem na klasy i średnice. Nowy, nowoczesny interfejs, ulepszone funkcje oraz możliwość eksportu wyników do pliku PDF."
+
     override val bounceMasterDescription =
         "Ta prosta i wciągająca gra zręcznościowa została stworzona przy użyciu silnika Godot oraz języka GDScript. Projekt powstał jako małe, niezależne doświadczenie programistyczne – idealne dla fanów gier arcade i krótkich wyzwań. Sterujesz piłką, utrzymujesz ją w grze i zdobywasz jak najwięcej punktów. Mechanika jest prosta, ale wynik zależy tylko od Twojej zręczności i refleksu!"
     override val seeMore: String = "Zobacz więcej na:"
@@ -93,6 +96,7 @@ object StringsPl : Strings {
     override val toolsLabel = "Narzędzia i programy:"
     override val hobbiesLabel = "Hobbystycznie:"
     override val archive = "ARCHIWALNA"
+    override val new = "NOWOŚĆ"
     override val drzewostan = "Drzewostan - szacunki brakarskie"
     override val spojrzyj = "Spojrzyj - Soczewki kontaktowe"
     override val smogus = "Smoguś - Jakość powietrza "
