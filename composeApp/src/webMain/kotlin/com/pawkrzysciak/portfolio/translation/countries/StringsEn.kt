@@ -133,7 +133,7 @@ object StringsEn : Strings {
     override val smogus = "Smoguś – Air Quality Monitor"
 
     override val statExperienceLabel = "years of experience"
-    override val statUsersLabel = "app users reached"
+    override val statUsersLabel = "users in apps I worked on"
     override val statCompaniesLabel = "tech companies"
     override val downloadCv = "Download CV"
     override val contactSubtitle = "Always open to new opportunities and interesting projects"

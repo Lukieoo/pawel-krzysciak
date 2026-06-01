@@ -102,7 +102,7 @@ object StringsPl : Strings {
     override val smogus = "Smoguś - Jakość powietrza "
 
     override val statExperienceLabel = "lat doświadczenia"
-    override val statUsersLabel = "użytkowników aplikacji"
+    override val statUsersLabel = "użytkowników aplikacji, przy których pracowałem"
     override val statCompaniesLabel = "firmy komercyjne"
     override val downloadCv = "Pobierz CV"
     override val contactSubtitle = "Zawsze otwarty na nowe możliwości i ciekawe projekty"
