@@ -161,6 +161,23 @@ fun verticalProjects(strings: Strings) = listOf(
     ),
     ProjectItem(
         id = "2",
+        title = "Spojrzyj 3.0",
+        description = strings.spojrzyj3Description,
+        emoji = "SP",
+        previewImagesUrls = listOf(
+            Res.drawable.looked_2,
+            Res.drawable.looked_3,
+        ),
+        iconUrl = Res.drawable.looked_app_icon,
+        githubUrl = null,
+        playStoreUrl = "https://play.google.com/store/apps/details?id=com.anioncode.spojrzyj",
+        externalUrl = "https://lukieoo.github.io/Spojrzyj-io",
+        externalUrlLabel = "Website",
+        isNew = true,
+        backgroundColor = Color.LightGray
+    ),
+    ProjectItem(
+        id = "3",
         title = "Bounce Master",
         description = strings.bounceMasterDescription,
         emoji = "BM",

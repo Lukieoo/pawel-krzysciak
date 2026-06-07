@@ -96,6 +96,8 @@ object StringsEn : Strings {
 
     override val drzewostan2Description =
         "Refreshed version 2.0 of the app for recording tree counts by class and diameter. New modern interface, improved features, and PDF export functionality for sharing results."
+    override val spojrzyj3Description =
+        "Refreshed version 3.0 of the contact lens replacement management app. New modern interface, improved reminders, and additional personalization options. A practical widget is also available."
 
     override val bounceMasterDescription =
         "A simple and engaging arcade game created using the Godot engine and GDScript. " +

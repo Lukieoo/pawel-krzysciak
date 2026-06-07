@@ -51,6 +51,7 @@ interface Strings {
     val smogusDescription: String
 
     val drzewostan2Description: String
+    val spojrzyj3Description: String
 
     // Vertical projects
     val bounceMasterDescription: String

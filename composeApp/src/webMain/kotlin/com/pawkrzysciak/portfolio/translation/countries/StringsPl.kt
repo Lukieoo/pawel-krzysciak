@@ -70,6 +70,8 @@ object StringsPl : Strings {
         "Aplikacja zwiększająca świadomość użytkowników na temat jakości powietrza. Dane pomiarowe pochodzą z oficjalnych stacji GIOŚ. Umożliwia przeglądanie zanieczyszczeń na interaktywnej mapie Polski oraz analizę szczegółowych danych regionalnych."
     override val drzewostan2Description =
         "Odświeżona wersja 2.0 aplikacji do notowania liczby drzew z podziałem na klasy i średnice. Nowy, nowoczesny interfejs, ulepszone funkcje oraz możliwość eksportu wyników do pliku PDF."
+    override val spojrzyj3Description =
+        "Odświeżona wersja 3.0 aplikacji ułatwiającej zarządzanie terminami wymiany soczewek kontaktowych. Nowy, nowoczesny interfejs, ulepszone przypomnienia oraz dodatkowe opcje personalizacji. Dostępny jest również praktyczny widget."
 
     override val bounceMasterDescription =
         "Ta prosta i wciągająca gra zręcznościowa została stworzona przy użyciu silnika Godot oraz języka GDScript. Projekt powstał jako małe, niezależne doświadczenie programistyczne – idealne dla fanów gier arcade i krótkich wyzwań. Sterujesz piłką, utrzymujesz ją w grze i zdobywasz jak najwięcej punktów. Mechanika jest prosta, ale wynik zależy tylko od Twojej zręczności i refleksu!"
